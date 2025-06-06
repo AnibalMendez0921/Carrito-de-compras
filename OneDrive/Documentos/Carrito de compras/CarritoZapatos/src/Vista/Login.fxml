@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.StackPane?>
 
 <StackPane fx:id="rootPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.LoginController">
-
    <children>
 
       <ImageView fx:id="backgroundImage" fitHeight="670.0" fitWidth="1300.0" pickOnBounds="true" preserveRatio="false">
@@ -43,7 +42,6 @@
                   <children>
                      <Button fx:id="roundButton" layoutX="104.0" layoutY="293.0" prefHeight="29.0" prefWidth="98.0" style="-fx-border-radius: 30; -fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 30;" text="Ingresar" />
                      <Label layoutX="80.0" layoutY="336.0" text="¿Aún no tienes una cuenta?" />
-                     <Label layoutX="123.0" layoutY="353.0" text="¡Registrate!" />
 
                      <TextField layoutX="47.0" layoutY="150.0" prefHeight="41.0" prefWidth="212.0" promptText="E-mail" style="-fx-background-radius: 30; -fx-background-color: white; -fx-alignment: center; -fx-text-fill: #333232;" />
 
@@ -60,12 +58,14 @@
                         </children>
                      </Pane>
 
-             
                      <ImageView fitHeight="240.0" fitWidth="227.0" layoutX="39.0" layoutY="95.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                         <image>
                            <Image url="@../Imagenes/Icono%201.png" />
                         </image>
                      </ImageView>
+
+    
+                     <Button layoutX="115.0" layoutY="360.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: #000000; -fx-font-weight: bold; -fx-cursor: hand;" text="¡Registrate!" />
 
                   </children>
                </Pane>

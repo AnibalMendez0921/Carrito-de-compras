@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="AnchorPane" prefHeight="894.0" prefWidth="1371.0" style="-fx-background-color: #ffdcbc;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.RegistroController">
+   <children>
+
+      <Pane layoutX="452.0" layoutY="16.0" prefHeight="810.0" prefWidth="500.0" style="-fx-background-radius: 30 30 30 30; -fx-background-color: rgba(255, 255, 255, 0.5);">
+         <children>
+
+            <TextField layoutX="79.0" layoutY="196.0" prefHeight="41.0" prefWidth="332.0" promptText="Nombre de usuario" style="-fx-background-radius: 30; -fx-alignment: center; -fx-background-color: white; -fx-focus-color: transparent; -fx-faint-focus-color: transparent;" />
+
+            <TextField layoutX="85.0" layoutY="274.0" prefHeight="41.0" prefWidth="321.0" promptText="Identificación" style="-fx-background-radius: 30; -fx-alignment: center; -fx-background-color: white; -fx-focus-color: transparent; -fx-faint-focus-color: transparent;" />
+
+            <TextField layoutX="86.0" layoutY="357.0" prefHeight="41.0" prefWidth="321.0" promptText="Número de celular" style="-fx-background-radius: 30; -fx-alignment: center; -fx-background-color: white; -fx-focus-color: transparent; -fx-faint-focus-color: transparent;" />
+
+            <TextField layoutX="86.0" layoutY="441.0" prefHeight="41.0" prefWidth="321.0" promptText="Correo" style="-fx-background-radius: 30; -fx-alignment: center; -fx-background-color: white; -fx-focus-color: transparent; -fx-faint-focus-color: transparent;" />
+
+            <TextField layoutX="89.0" layoutY="525.0" prefHeight="41.0" prefWidth="321.0" promptText="Contraseña" style="-fx-background-radius: 30; -fx-alignment: center; -fx-background-color: white; -fx-focus-color: transparent; -fx-faint-focus-color: transparent;" />
+
+            <TextField layoutX="89.0" layoutY="601.0" prefHeight="41.0" prefWidth="321.0" promptText="Confirmar contraseña" style="-fx-background-radius: 30; -fx-alignment: center; -fx-background-color: white; -fx-focus-color: transparent; -fx-faint-focus-color: transparent;" />
+
+            <Pane prefHeight="142.0" prefWidth="498.0" style="-fx-background-color: white; -fx-background-radius: 30 30 10 10;">
+               <children>
+                  <ImageView fitHeight="188.0" fitWidth="366.0" layoutX="53.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/logo%20tienda%20sin%20fondo.png" />
+                     </image>
+                  </ImageView>
+
+                  <Button layoutX="449.0" layoutY="19.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent; -fx-text-fill: black; -fx-font-size: 16px;" text="X" />
+               </children>
+            </Pane>
+
+            <Button layoutX="186.0" layoutY="704.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="142.0" style="-fx-background-radius: 30; -fx-background-color: black;" text="Registrarse" textFill="WHITE" />
+
+         </children>
+      </Pane>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" />
+
+   </children>
+</AnchorPane>

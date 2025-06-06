@@ -4,7 +4,6 @@
  */
 package Controlador;
 
-import Vista.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -12,9 +11,9 @@ import javafx.fxml.Initializable;
 /**
  * FXML Controller class
  *
- * @Josue GÓmez y Anibal Mendez
+ * @author aniba
  */
-public class PantallaPrincipalController implements Initializable {
+public class RegistroController implements Initializable {
 
     /**
      * Initializes the controller class.
