@@ -40,12 +40,21 @@
 
                <Pane layoutX="254.0" layoutY="154.0" prefHeight="399.0" prefWidth="305.0" style="-fx-border-radius: 30; -fx-background-radius: 30; -fx-background-color: rgba(255,255,255,0.4);">
                   <children>
-                     <Button fx:id="roundButton" layoutX="104.0" layoutY="293.0" prefHeight="29.0" prefWidth="98.0" style="-fx-border-radius: 30; -fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 30;" text="Ingresar" />
+
+                     <!-- Botón Ingresar -->
+                     <Button fx:id="roundButton" layoutX="104.0" layoutY="293.0" prefHeight="29.0" prefWidth="98.0"
+                             style="-fx-border-radius: 30; -fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 30; -fx-cursor: hand;"
+                             text="Ingresar" onAction="#handleLogin" />
+
                      <Label layoutX="80.0" layoutY="336.0" text="¿Aún no tienes una cuenta?" />
 
-                     <TextField layoutX="47.0" layoutY="150.0" prefHeight="41.0" prefWidth="212.0" promptText="E-mail" style="-fx-background-radius: 30; -fx-background-color: white; -fx-alignment: center; -fx-text-fill: #333232;" />
+                     <TextField fx:id="txtCorreo" layoutX="47.0" layoutY="150.0" prefHeight="41.0" prefWidth="212.0"
+                                promptText="E-mail"
+                                style="-fx-background-radius: 30; -fx-background-color: white; -fx-alignment: center; -fx-text-fill: #333232;" />
 
-                     <PasswordField layoutX="47.0" layoutY="230.0" prefHeight="41.0" prefWidth="212.0" promptText="Contraseña" style="-fx-background-radius: 30; -fx-background-color: white; -fx-border-radius: 30; -fx-alignment: center; -fx-text-fill: #333232;" />
+                     <PasswordField fx:id="txtContrasena" layoutX="47.0" layoutY="230.0" prefHeight="41.0" prefWidth="212.0"
+                                    promptText="Contraseña"
+                                    style="-fx-background-radius: 30; -fx-background-color: white; -fx-border-radius: 30; -fx-alignment: center; -fx-text-fill: #333232;" />
 
                      <Pane prefHeight="108.0" prefWidth="305.0" style="-fx-background-color: white; -fx-background-radius: 30 30 0 0;">
                         <children>
@@ -54,7 +63,10 @@
                                  <Image url="@../Imagenes/Zcarpe.jpg" />
                               </image>
                            </ImageView>
-                           <Button layoutX="266.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 30 30 30 30;" text="X" textFill="#0000006d" />
+
+                           <Button fx:id="btnCerrarLogin" layoutX="266.0" layoutY="13.0" mnemonicParsing="false"
+                                   style="-fx-background-color: white; -fx-background-radius: 30 30 30 30; -fx-cursor: hand;"
+                                   text="X" textFill="#0000006d" onAction="#cerrarVentana" />
                         </children>
                      </Pane>
 
@@ -64,15 +76,13 @@
                         </image>
                      </ImageView>
 
-    
-                     <Button layoutX="115.0" layoutY="360.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: #000000; -fx-font-weight: bold; -fx-cursor: hand;" text="¡Registrate!" />
-
+                     <Button layoutX="115.0" layoutY="360.0" mnemonicParsing="false"
+                             style="-fx-background-color: transparent; -fx-text-fill: #000000; -fx-font-weight: bold; -fx-cursor: hand;"
+                             text="¡Registrate!" onAction="#abrirRegistro" />
                   </children>
                </Pane>
-
             </children>
          </Pane>
       </StackPane>
-
    </children>
 </StackPane>

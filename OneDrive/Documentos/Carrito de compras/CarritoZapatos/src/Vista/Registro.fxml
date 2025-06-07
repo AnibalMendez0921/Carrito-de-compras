@@ -35,11 +35,15 @@
                      </image>
                   </ImageView>
 
-                  <Button fx:id="btnCerrar" layoutX="449.0" layoutY="19.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent; -fx-text-fill: black; -fx-font-size: 16px;" text="X" />
+                  <Button fx:id="btnCerrar" layoutX="449.0" layoutY="19.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0"
+                          style="-fx-background-color: transparent; -fx-text-fill: black; -fx-font-size: 16px; -fx-cursor: hand;"
+                          text="X" />
                </children>
             </Pane>
 
-            <Button fx:id="btnRegistrarse" layoutX="186.0" layoutY="704.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="142.0" style="-fx-background-radius: 30; -fx-background-color: black;" text="Registrarse" textFill="WHITE" />
+            <Button fx:id="btnRegistrarse" layoutX="186.0" layoutY="704.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="142.0"
+                    style="-fx-background-radius: 30; -fx-background-color: black; -fx-cursor: hand;"
+                    text="Registrarse" textFill="WHITE" />
 
          </children>
       </Pane>
