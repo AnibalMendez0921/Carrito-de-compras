@@ -4,7 +4,9 @@
  */
 package Controlador;
 
+import Modelo.Usuario;
 import Modelo.UsuarioArchivo;
+import Modelo.Sesion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,12 +58,16 @@ public class LoginController implements Initializable {
             return;
         }
 
+        Usuario usuarioLogueado = UsuarioArchivo.buscarPorCorreo(correo);
+        if (usuarioLogueado != null) {
+            Sesion.setUsuarioActual(usuarioLogueado);
+        }
+
         String rol = correo.toLowerCase().endsWith("@zcarpe") ? "admin" : "usuario";
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/PantallaPrincipal.fxml"));
             Parent root = loader.load();
-
 
             Stage stage = (Stage) roundButton.getScene().getWindow();
             stage.setScene(new Scene(root));

@@ -10,9 +10,16 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.fxml.FXMLLoader;
 import Modelo.Usuario;
 import Modelo.ListaUsuarios;
 import Modelo.UsuarioArchivo;
+import Modelo.Sesion;
+
+import java.io.IOException;
 
 public class RegistroController {
 
@@ -23,20 +30,26 @@ public class RegistroController {
     @FXML private PasswordField txtContrasena;
     @FXML private PasswordField txtConfirmarContrasena;
     @FXML private Button btnRegistrarse;
-    @FXML private Button btnCerrar;  
+    @FXML private Button btnCerrar;
 
     private static ListaUsuarios listaUsuarios = new ListaUsuarios();
 
     @FXML
     public void initialize() {
-        btnRegistrarse.setOnAction(event -> registrarUsuario());
+        btnRegistrarse.setOnAction(event -> {
+            try {
+                registrarUsuario(event);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
         if (btnCerrar != null) {
             btnCerrar.setOnAction(event -> cerrarVentana());
         }
     }
 
-    private void registrarUsuario() {
+    private void registrarUsuario(javafx.event.ActionEvent event) throws IOException {
         String nombre = txtNombre.getText();
         String identificacion = txtIdentificacion.getText();
         String celular = txtCelular.getText();
@@ -58,8 +71,15 @@ public class RegistroController {
         listaUsuarios.agregarUsuario(nuevoUsuario);
         UsuarioArchivo.guardarUsuario(nuevoUsuario);
 
+
+        Sesion.setUsuarioActual(nuevoUsuario);
+
+        Parent root = FXMLLoader.load(getClass().getResource("/Vista/PantallaPrincipal.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+
         mostrarAlerta("Éxito", "Usuario registrado correctamente");
-        limpiarCampos();
     }
 
     private void mostrarAlerta(String titulo, String mensaje) {
@@ -69,17 +89,8 @@ public class RegistroController {
         alert.showAndWait();
     }
 
-    private void limpiarCampos() {
-        txtNombre.clear();
-        txtIdentificacion.clear();
-        txtCelular.clear();
-        txtCorreo.clear();
-        txtContrasena.clear();
-        txtConfirmarContrasena.clear();
-    }
-
     private void cerrarVentana() {
-        Stage stage = (Stage) btnCerrar.getScene().getWindow();
+        Stage stage = (Stage) btnRegistrarse.getScene().getWindow();
         stage.close();
     }
 }
