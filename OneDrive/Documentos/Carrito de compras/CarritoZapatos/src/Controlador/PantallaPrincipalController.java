@@ -29,6 +29,7 @@ public class PantallaPrincipalController implements Initializable {
     @FXML private Button btnZapato5;
     @FXML private Button btnRegistro;
     @FXML private Button btnLogin;
+    @FXML private Button btnVerMas;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -57,13 +58,16 @@ public class PantallaPrincipalController implements Initializable {
             btnZapato5.setOnAction(e -> abrirVentana("/Vista/DescripcionProducto5.fxml", "Descripción Producto 5", e));
         }
 
-       
         if (btnRegistro != null) {
             btnRegistro.setOnAction(this::irARegistro);
         }
 
         if (btnLogin != null) {
             btnLogin.setOnAction(this::irALogin);
+        }
+
+        if (btnVerMas != null) {
+            btnVerMas.setOnAction(e -> abrirVentana("/Vista/VerMas.fxml", "Ver Más", e));
         }
     }
 
