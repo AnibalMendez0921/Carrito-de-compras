@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.scene.Node;
 
 public class LoginController implements Initializable {
 
@@ -95,10 +96,21 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void cerrarVentana(ActionEvent event) {
-        Stage stage = (Stage) btnCerrarLogin.getScene().getWindow();
-        stage.close();
+   private void cerrarVentana(ActionEvent event) {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/PantallaPrincipal.fxml"));
+        Parent root = loader.load();
+        Stage stagePrincipal = new Stage();
+        stagePrincipal.setScene(new Scene(root));
+        stagePrincipal.setTitle("Pantalla Principal");
+        stagePrincipal.show();
+
+        Stage stageLogin = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stageLogin.close();
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
 
     private void mostrarAlerta(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

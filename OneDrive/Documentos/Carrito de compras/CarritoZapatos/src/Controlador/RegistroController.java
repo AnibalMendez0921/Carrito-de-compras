@@ -45,7 +45,7 @@ public class RegistroController {
         });
 
         if (btnCerrar != null) {
-            btnCerrar.setOnAction(event -> cerrarVentana());
+            btnCerrar.setOnAction(event -> cerrarVentana(event));
         }
     }
 
@@ -56,6 +56,12 @@ public class RegistroController {
         String correo = txtCorreo.getText();
         String contrasena = txtContrasena.getText();
         String confirmarContrasena = txtConfirmarContrasena.getText();
+
+        if (nombre.isEmpty() || identificacion.isEmpty() || celular.isEmpty() || correo.isEmpty()
+                || contrasena.isEmpty() || confirmarContrasena.isEmpty()) {
+            mostrarAlerta("Campos vacíos", "Por favor, completa todos los campos antes de continuar.");
+            return;
+        }
 
         if (!contrasena.equals(confirmarContrasena)) {
             mostrarAlerta("Error", "Las contraseñas no coinciden");
@@ -70,7 +76,6 @@ public class RegistroController {
         Usuario nuevoUsuario = new Usuario(nombre, identificacion, celular, correo, contrasena);
         listaUsuarios.agregarUsuario(nuevoUsuario);
         UsuarioArchivo.guardarUsuario(nuevoUsuario);
-
 
         Sesion.setUsuarioActual(nuevoUsuario);
 
@@ -89,8 +94,19 @@ public class RegistroController {
         alert.showAndWait();
     }
 
-    private void cerrarVentana() {
-        Stage stage = (Stage) btnRegistrarse.getScene().getWindow();
-        stage.close();
+    private void cerrarVentana(javafx.event.ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/Login.fxml"));
+            Parent root = loader.load();
+            Stage loginStage = new Stage();
+            loginStage.setScene(new Scene(root));
+            loginStage.setTitle("Login");
+            loginStage.show();
+
+            Stage registroStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            registroStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -16,7 +16,6 @@
          </image>
       </ImageView>
       
-      <!-- Botones invisibles con fx:id agregados -->
       <Button fx:id="btnLogin" layoutX="986.0" layoutY="14.0" mnemonicParsing="false" opacity="0.0" prefHeight="37.0" prefWidth="159.0" style="-fx-cursor: hand;" />
       <Button fx:id="btnRegistro" layoutX="1156.0" layoutY="20.0" mnemonicParsing="false" opacity="0.0" prefHeight="37.0" prefWidth="131.0" style="-fx-cursor: hand;" />
 

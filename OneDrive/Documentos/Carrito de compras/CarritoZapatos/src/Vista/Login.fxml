@@ -41,7 +41,6 @@
                <Pane layoutX="254.0" layoutY="154.0" prefHeight="399.0" prefWidth="305.0" style="-fx-border-radius: 30; -fx-background-radius: 30; -fx-background-color: rgba(255,255,255,0.4);">
                   <children>
 
-                     <!-- Botón Ingresar -->
                      <Button fx:id="roundButton" layoutX="104.0" layoutY="293.0" prefHeight="29.0" prefWidth="98.0"
                              style="-fx-border-radius: 30; -fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 30; -fx-cursor: hand;"
                              text="Ingresar" onAction="#handleLogin" />
