@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="898.0" prefWidth="1280.0" style="-fx-background-color: #ffdcbc;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.DescripcionProducto1Controller">
    <children>
 
-      <Button fx:id="btnCarrito" layoutX="1000.0" layoutY="40.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Carrito de compras">
+      <ImageView fitHeight="899.0" fitWidth="652.0" layoutX="650.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+         <image><Image url="@../Imagenes/Z.png" /></image>
+      </ImageView>
+
+      <Button fx:id="btnCarrito" layoutX="1000.0" layoutY="40.0" mnemonicParsing="false"
+              style="-fx-background-color: transparent; -fx-cursor: hand;" text="Carrito de compras" onAction="#irAlCarrito">
          <graphic>
             <ImageView fitHeight="20" fitWidth="20">
                <image><Image url="@../Imagenes/carrito.png" /></image>
@@ -25,7 +22,8 @@
          <font><Font name="System Bold" size="12.0" /></font>
       </Button>
 
-      <Button fx:id="btnUsuario" layoutX="1150.0" layoutY="40.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Tu usuario">
+      <Button fx:id="btnUsuario" layoutX="1150.0" layoutY="40.0" mnemonicParsing="false"
+              style="-fx-background-color: transparent; -fx-cursor: hand;" text="Tu usuario">
          <graphic>
             <ImageView fitHeight="20" fitWidth="20">
                <image><Image url="@../Imagenes/usuario.png" /></image>
@@ -33,10 +31,6 @@
          </graphic>
          <font><Font name="System Bold" size="12.0" /></font>
       </Button>
-
-      <ImageView fitHeight="899.0" fitWidth="652.0" layoutX="650.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
-         <image><Image url="@../Imagenes/Z.png" /></image>
-      </ImageView>
 
       <Pane layoutX="-16.0" layoutY="106.0" prefHeight="142.0" prefWidth="1316.0" style="-fx-background-color: white;">
          <children>
@@ -53,13 +47,18 @@
          <image><Image url="@../Imagenes/logo%20tienda%20sin%20fondo.png" /></image>
       </ImageView>
 
-      <Button layoutX="14.0" layoutY="28.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="112.0" style="-fx-background-color: #ffdcbc;" text="Hombre">
+      <Button layoutX="14.0" layoutY="28.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="112.0"
+              style="-fx-background-color: #ffdcbc; -fx-cursor: hand;" text="Hombre">
          <font><Font name="System Bold" size="12.0" /></font>
       </Button>
-      <Button layoutX="142.0" layoutY="28.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="124.0" style="-fx-background-color: #ffdcbc;" text="Mujer">
+
+      <Button layoutX="142.0" layoutY="28.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="124.0"
+              style="-fx-background-color: #ffdcbc; -fx-cursor: hand;" text="Mujer">
          <font><Font name="System Bold" size="12.0" /></font>
       </Button>
-      <Button layoutX="288.0" layoutY="28.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="143.0" style="-fx-background-color: #ffdcbc;" text="Lista de deseos">
+
+      <Button layoutX="288.0" layoutY="28.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="143.0"
+              style="-fx-background-color: #ffdcbc; -fx-cursor: hand;" text="Lista de deseos">
          <font><Font name="System Bold" size="12.0" /></font>
       </Button>
 
@@ -67,7 +66,8 @@
          <image><Image url="@../Imagenes/Zapato1.png" /></image>
       </ImageView>
 
-      <ToggleButton fx:id="btnFavorito" layoutX="420.0" layoutY="150.0" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: transparent;" />
+      <ToggleButton fx:id="btnFavorito" layoutX="420.0" layoutY="150.0" prefHeight="40.0" prefWidth="40.0"
+                    style="-fx-background-color: transparent; -fx-cursor: hand;" />
       <ImageView fx:id="imgCorazon" fitHeight="39.0" fitWidth="38.0" layoutX="415.0" layoutY="529.0">
          <image><Image url="@../Imagenes/corazon%20vacio.png" /></image>
       </ImageView>
@@ -106,13 +106,13 @@
          <ToggleGroup fx:id="tallasGroup" />
       </fx:define>
 
-      <ToggleButton fx:id="talla36" layoutX="617.0" layoutY="360.0" style="-fx-background-radius: 20; -fx-background-color: #ffdcbc;" text="36">
+      <ToggleButton fx:id="talla36" layoutX="617.0" layoutY="360.0" style="-fx-background-radius: 20; -fx-background-color: #ffdcbc; -fx-cursor: hand;" text="36">
          <toggleGroup><ToggleGroup fx:id="tallasGroup" /></toggleGroup>
       </ToggleButton>
-      <ToggleButton fx:id="talla37" layoutX="667.0" layoutY="360.0" style="-fx-background-radius: 20; -fx-background-color: #ffdcbc;" text="37" toggleGroup="$tallasGroup" />
-      <ToggleButton fx:id="talla38" layoutX="713.0" layoutY="361.0" style="-fx-background-radius: 20; -fx-background-color: #ffdcbc;" text="38" toggleGroup="$tallasGroup" />
-      <ToggleButton fx:id="talla39" layoutX="764.0" layoutY="361.0" style="-fx-background-radius: 20; -fx-background-color: #ffdcbc;" text="39" toggleGroup="$tallasGroup" />
-      <ToggleButton fx:id="talla40" layoutX="810.0" layoutY="362.0" style="-fx-background-radius: 20; -fx-background-color: #ffdcbc;" text="40" toggleGroup="$tallasGroup" />
+      <ToggleButton fx:id="talla37" layoutX="667.0" layoutY="360.0" style="-fx-background-radius: 20; -fx-background-color: #ffdcbc; -fx-cursor: hand;" text="37" toggleGroup="$tallasGroup" />
+      <ToggleButton fx:id="talla38" layoutX="713.0" layoutY="361.0" style="-fx-background-radius: 20; -fx-background-color: #ffdcbc; -fx-cursor: hand;" text="38" toggleGroup="$tallasGroup" />
+      <ToggleButton fx:id="talla39" layoutX="764.0" layoutY="361.0" style="-fx-background-radius: 20; -fx-background-color: #ffdcbc; -fx-cursor: hand;" text="39" toggleGroup="$tallasGroup" />
+      <ToggleButton fx:id="talla40" layoutX="810.0" layoutY="362.0" style="-fx-background-radius: 20; -fx-background-color: #ffdcbc; -fx-cursor: hand;" text="40" toggleGroup="$tallasGroup" />
 
       <VBox layoutX="617.0" layoutY="426.0" prefHeight="173.0" prefWidth="277.0" spacing="12">
          <children>
@@ -126,18 +126,22 @@
                <content><VBox><Text text="Para mantener tus Tenis Hombre Bravé..." wrappingWidth="230" /></VBox></content>
             </TitledPane>
 
-            <Button fx:id="btnComprar" prefHeight="25.0" prefWidth="282.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 30;" text="Comprar" />
-            <Button fx:id="btnAgregarCarrito" prefHeight="25.0" prefWidth="280.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 30;" text="Agregar al Carrito" />
+            <Button fx:id="btnComprar" prefHeight="25.0" prefWidth="282.0"
+                    style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 30; -fx-cursor: hand;" text="Comprar" />
+
+            <Button fx:id="btnAgregarCarrito" onAction="#agregarAlCarrito" prefHeight="25.0" prefWidth="280.0"
+                    style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 30; -fx-cursor: hand;" text="Agregar al Carrito" />
          </children>
       </VBox>
 
-        <Button fx:id="btnRegresar" layoutX="1208.0" layoutY="820.0" mnemonicParsing="false" onAction="#irAPantallaPrincipal" style="-fx-background-color: transparent; -fx-cursor: hand;">
-   <graphic>
-      <ImageView fitHeight="39.0" fitWidth="43.0">
-         <image><Image url="@../Imagenes/flecha.png" /></image>
-      </ImageView>
-   </graphic>
-</Button>
+      <Button fx:id="btnRegresar" layoutX="1208.0" layoutY="820.0" mnemonicParsing="false" onAction="#irAPantallaPrincipal"
+              style="-fx-background-color: transparent; -fx-cursor: hand;">
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="43.0">
+               <image><Image url="@../Imagenes/flecha.png" /></image>
+            </ImageView>
+         </graphic>
+      </Button>
 
    </children>
 </AnchorPane>

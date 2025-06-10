@@ -4,113 +4,89 @@
  */
 package Controlador;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import Modelo.Carrito;
+import Modelo.Producto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
-public class DescripcionProducto1Controller implements Initializable {
+public class DescripcionProducto1Controller {
 
     @FXML private ToggleButton talla36;
     @FXML private ToggleButton talla37;
     @FXML private ToggleButton talla38;
     @FXML private ToggleButton talla39;
     @FXML private ToggleButton talla40;
-    @FXML private ToggleGroup tallasGroup;
 
-    @FXML private Button btnComprar;
-    @FXML private Button btnAgregarCarrito;
-    @FXML private Button btnRegresar;
 
-    @FXML private TitledPane titledDescripcion;
-    @FXML private TitledPane titledDetalles;
-    @FXML private TitledPane titledCuidados;
+    @FXML
+    private void irAlCarrito(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/Carrito.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Carrito de compras");
+            stage.setScene(new Scene(root));
+            stage.show();
 
-    @FXML private ToggleButton btnFavorito;
-    @FXML private ImageView imgCorazon;
+            ((Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow()).close();
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        tallasGroup.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
-            if (newToggle != null) {
-                ToggleButton seleccionada = (ToggleButton) newToggle;
-                System.out.println("Talla seleccionada: " + seleccionada.getText());
-            }
-        });
-
-        btnComprar.setOnAction(e -> {
-            String talla = obtenerTallaSeleccionada();
-            if (talla != null) {
-                System.out.println("Comprando talla: " + talla);
-            } else {
-                System.out.println("Por favor selecciona una talla.");
-            }
-        });
-
-        btnAgregarCarrito.setOnAction(e -> {
-            String talla = obtenerTallaSeleccionada();
-            if (talla != null) {
-                System.out.println("Agregando al carrito talla: " + talla);
-            } else {
-                System.out.println("Por favor selecciona una talla.");
-            }
-        });
-
-        btnFavorito.setOnAction(e -> {
-            if (btnFavorito.isSelected()) {
-                imgCorazon.setImage(new Image(getClass().getResource("/Imagenes/corazon_lleno.png").toExternalForm()));
-                System.out.println("Añadido a favoritos");
-            } else {
-                imgCorazon.setImage(new Image(getClass().getResource("/Imagenes/corazon_vacio.png").toExternalForm()));
-                System.out.println("Quitado de favoritos");
-            }
-        });
-
-        hacerTituloTransparente(titledDescripcion);
-        hacerTituloTransparente(titledDetalles);
-        hacerTituloTransparente(titledCuidados);
-    }
-
-    private String obtenerTallaSeleccionada() {
-        ToggleButton selected = (ToggleButton) tallasGroup.getSelectedToggle();
-        return selected != null ? selected.getText() : null;
-    }
-
-    private void hacerTituloTransparente(TitledPane pane) {
-        pane.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
-        pane.skinProperty().addListener((obs, oldSkin, newSkin) -> {
-            Region titleRegion = (Region) pane.lookup(".title");
-            if (titleRegion != null) {
-                titleRegion.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
-            }
-        });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void irAPantallaPrincipal(ActionEvent event) {
-    try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/PantallaPrincipal.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    } catch (IOException e) {
-        e.printStackTrace();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/PantallaPrincipal.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Tienda de Zapatos");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            ((Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow()).close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-}
+
+    private String obtenerTallaSeleccionada() {
+        if (talla36.isSelected()) return "36";
+        if (talla37.isSelected()) return "37";
+        if (talla38.isSelected()) return "38";
+        if (talla39.isSelected()) return "39";
+        if (talla40.isSelected()) return "40";
+        return "Sin talla";
+    }
+
+    @FXML
+    private void agregarAlCarrito(ActionEvent event) {
+        String talla = obtenerTallaSeleccionada();
+        if (talla.equals("Sin talla")) {
+            System.out.println("Por favor selecciona una talla.");
+            return;
+        }
+
+        Producto producto = new Producto(
+            "Tenis hombre Bravé",
+            "Fuerza urbana",
+            talla,
+            "4.5",
+            "$169.900",
+            new Image(getClass().getResource("/Imagenes/Zapato1.png").toString())
+        );
+
+        Carrito.agregarProducto(producto);
+        System.out.println("Producto agregado al carrito: " + producto.getNombre());
+
+  
+    }
 }

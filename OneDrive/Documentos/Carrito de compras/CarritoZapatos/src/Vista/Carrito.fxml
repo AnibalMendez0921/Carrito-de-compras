@@ -141,7 +141,17 @@
         </effect>
     </AnchorPane>
 
-    <Button fx:id="pagarButton" layoutX="54.0" layoutY="808.0" prefHeight="35.0" prefWidth="825.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 30;" text="Pagar">
+    <Button fx:id="pagarButton" layoutX="129.0" layoutY="808.0" prefHeight="35.0" prefWidth="750.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 30;" text="Pagar">
         <font><Font name="Arial Narrow" size="14.0" /></font>
     </Button>
+    
+     <Button fx:id="btnRegresar" layoutX="57.0" layoutY="799.0" mnemonicParsing="false" onAction="#irAVerMas" style="-fx-background-color: transparent; -fx-cursor: hand;">
+      <graphic>
+      <ImageView fitHeight="39.0" fitWidth="43.0">
+         <image>
+               <Image url="@../Imagenes/flecha.png" />
+            </image>
+      </ImageView>
+      </graphic></Button>
+
 </AnchorPane>
