@@ -3,18 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Vista;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-/**
- *
- * @Josue Gomez y Anibal Mendez
- */
-public class MainLogin extends Application{
 
-    @Override
+/**
+ * @author Josue Gomez y Anibal Mendez
+ */
+public class MainLogin extends Application {
+
+   @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("PantallaPrincipal.fxml"));
         primaryStage.setTitle("Mi Aplicación JavaFX");
@@ -23,7 +24,6 @@ public class MainLogin extends Application{
     }
 
     public static void main(String[] args) {
-        launch(args);
-    }
-    
+        launch(args);}
+
 }

@@ -95,18 +95,14 @@ public class RegistroController {
     }
 
     private void cerrarVentana(javafx.event.ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/Login.fxml"));
-            Parent root = loader.load();
-            Stage loginStage = new Stage();
-            loginStage.setScene(new Scene(root));
-            loginStage.setTitle("Login");
-            loginStage.show();
-
-            Stage registroStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            registroStage.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    try {
+        Parent root = FXMLLoader.load(getClass().getResource("/Vista/Login.fxml"));
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Login");
+        stage.show();
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
 }
