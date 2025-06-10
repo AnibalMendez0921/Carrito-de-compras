@@ -9,13 +9,19 @@ import Modelo.Producto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
-public class DescripcionProducto1Controller {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class DescripcionProducto1Controller implements Initializable {
 
     @FXML private ToggleButton talla36;
     @FXML private ToggleButton talla37;
@@ -23,39 +29,30 @@ public class DescripcionProducto1Controller {
     @FXML private ToggleButton talla39;
     @FXML private ToggleButton talla40;
 
+    @FXML private TitledPane titledDescripcion;
+    @FXML private TitledPane titledDetalles;
+    @FXML private TitledPane titledCuidados;
 
-    @FXML
-    private void irAlCarrito(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/Carrito.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Carrito de compras");
-            stage.setScene(new Scene(root));
-            stage.show();
-
-            ((Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow()).close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        hacerTituloTransparente(titledDescripcion);
+        hacerTituloTransparente(titledDetalles);
+        hacerTituloTransparente(titledCuidados);
     }
 
-    @FXML
-    private void irAPantallaPrincipal(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/PantallaPrincipal.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Tienda de Zapatos");
-            stage.setScene(new Scene(root));
-            stage.show();
+    private void hacerTituloTransparente(TitledPane pane) {
+        pane.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
+        pane.skinProperty().addListener((obs, oldSkin, newSkin) -> {
+            Region titleRegion = (Region) pane.lookup(".title");
+            if (titleRegion != null) {
+                titleRegion.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
+            }
 
-            ((Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow()).close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            Region contentRegion = (Region) pane.lookup(".content");
+            if (contentRegion != null) {
+                contentRegion.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
+            }
+        });
     }
 
     private String obtenerTallaSeleccionada() {
@@ -80,13 +77,41 @@ public class DescripcionProducto1Controller {
             "Fuerza urbana",
             talla,
             "4.5",
-            "$169.900",
+            169900,
             new Image(getClass().getResource("/Imagenes/Zapato1.png").toString())
         );
 
         Carrito.agregarProducto(producto);
         System.out.println("Producto agregado al carrito: " + producto.getNombre());
+    }
 
-  
+    @FXML
+    private void irAlCarrito(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/Carrito.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Carrito de compras");
+            stage.setScene(new Scene(root));
+            stage.show();
+            ((Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow()).close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void irAPantallaPrincipal(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/PantallaPrincipal.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Tienda de Zapatos");
+            stage.setScene(new Scene(root));
+            stage.show();
+            ((Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow()).close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

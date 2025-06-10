@@ -29,9 +29,7 @@
         </ImageView>
         <Region prefHeight="50.0" prefWidth="285.0" />
         <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Carrito de compras " textFill="white">
-            <font>
-                <Font name="Bodoni MT" size="24.0" />
-            </font>
+            <font><Font name="Bodoni MT" size="24.0" /></font>
         </Label>
         <ImageView fx:id="userIcon" fitHeight="53.0" fitWidth="45.0">
             <image>
@@ -45,15 +43,14 @@
     </HBox>
 
     <ScrollPane fitToWidth="true" layoutX="45.0" layoutY="104.0" prefHeight="668.0" prefWidth="816.0">
-        <VBox fx:id="productosBox" prefWidth="580" spacing="15">
+        <VBox fx:id="listaItemsVBox" prefWidth="580" spacing="15">
             <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
         </VBox>
     </ScrollPane>
 
-    <AnchorPane layoutX="912.0" layoutY="94.0" prefHeight="719.0" prefWidth="354.0" style="-fx-background-color: white; -fx-background-radius: 30;">
-        
+    <AnchorPane layoutX="912.0" layoutY="94.0" prefHeight="783.0" prefWidth="366.0" style="-fx-background-color: white; -fx-background-radius: 30;">
         <ImageView fitHeight="339.0" fitWidth="336.0" layoutX="4.0" layoutY="189.0" opacity="0.14" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../Imagenes/Logo.png" />
@@ -83,7 +80,7 @@
         <Label layoutX="20" layoutY="210" style="-fx-font-weight: bold;" text="Detalle de la compra:">
             <font><Font name="Arial Narrow" size="14.0" /></font>
         </Label>
-        <TextArea fx:id="detalleCompraArea" editable="false" layoutX="20" layoutY="235" prefHeight="61.0" prefWidth="314.0" wrapText="true">
+        <TextArea fx:id="detalleCompraArea" editable="false" layoutX="19.0" layoutY="235" prefHeight="61.0" prefWidth="328.0" wrapText="true">
             <font><Font name="Arial Narrow" size="13.0" /></font>
         </TextArea>
         <Label fx:id="subtotalLabel" layoutX="22.0" layoutY="302.0" text="Subtotal: $">
@@ -106,7 +103,7 @@
             <Button fx:id="tarjetaButton" layoutX="0" layoutY="75" style="-fx-background-color: transparent; -fx-text-fill: black; -fx-font-weight: bold;" text="• Tarjeta débito o crédito" />
             <Button fx:id="transferenciaButton" layoutX="0" layoutY="100" style="-fx-background-color: transparent; -fx-text-fill: black; -fx-font-weight: bold;" text="• Transferencia bancaria" />
             <Button fx:id="contraentregaButton" layoutX="0" layoutY="125" style="-fx-background-color: transparent; -fx-text-fill: black; -fx-font-weight: bold;" text="• Pago contraentrega" />
-         <Separator layoutX="1.0" layoutY="160.0" prefHeight="3.0" prefWidth="314.0" style="-fx-background-color: black;" />
+            <Separator layoutX="1.0" layoutY="160.0" prefHeight="3.0" prefWidth="314.0" style="-fx-background-color: black;" />
         </AnchorPane>
         <Label fx:id="estadoPagoLabel" layoutX="20.0" layoutY="568.0" style="-fx-font-weight: bold;" text="Estado del pago:">
             <font><Font name="Arial Narrow" size="14.0" /></font>
@@ -127,9 +124,9 @@
         <Label layoutX="113.0" layoutY="667.0" prefHeight="22.0" prefWidth="130.0" text="Contacto@zcarpe.com" textAlignment="CENTER" wrapText="true">
             <font><Font name="Arial Narrow" size="13.0" /></font>
         </Label>
-        <Pane layoutY="702.0" prefHeight="81.0" prefWidth="355.0" style="-fx-background-radius: 2 2 30 30; -fx-background-color: black;">
+        <Pane layoutY="702.0" prefHeight="81.0" prefWidth="366.0" style="-fx-background-radius: 2 2 30 30; -fx-background-color: black;">
             <children>
-                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="86.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="103.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../Imagenes/Zcarpe%20blanco.png" />
                     </image>
@@ -144,14 +141,15 @@
     <Button fx:id="pagarButton" layoutX="129.0" layoutY="808.0" prefHeight="35.0" prefWidth="750.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 30;" text="Pagar">
         <font><Font name="Arial Narrow" size="14.0" /></font>
     </Button>
-    
-     <Button fx:id="btnRegresar" layoutX="57.0" layoutY="799.0" mnemonicParsing="false" onAction="#irAVerMas" style="-fx-background-color: transparent; -fx-cursor: hand;">
-      <graphic>
-      <ImageView fitHeight="39.0" fitWidth="43.0">
-         <image>
-               <Image url="@../Imagenes/flecha.png" />
-            </image>
-      </ImageView>
-      </graphic></Button>
+
+    <Button fx:id="btnRegresar" layoutX="57.0" layoutY="799.0" mnemonicParsing="false" onAction="#irAVerMas" style="-fx-background-color: transparent; -fx-cursor: hand;">
+        <graphic>
+            <ImageView fitHeight="39.0" fitWidth="43.0">
+                <image>
+                    <Image url="@../Imagenes/flecha.png" />
+                </image>
+            </ImageView>
+        </graphic>
+    </Button>
 
 </AnchorPane>

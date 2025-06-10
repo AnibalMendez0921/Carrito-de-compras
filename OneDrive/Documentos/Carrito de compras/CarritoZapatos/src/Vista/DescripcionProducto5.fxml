@@ -14,190 +14,147 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="898.0" prefWidth="1280.0" style="-fx-background-color: #ffdcbc;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.DescripcionProducto5Controller">
-
    <children>
-       
-       <Button fx:id="btnCarrito" layoutX="1000.0" layoutY="40.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Carrito de compras">
-   <graphic>
-      <ImageView fitHeight="20" fitWidth="20">
-         <image>
-            <Image url="@../Imagenes/carrito.png" />
-         </image>
-      </ImageView>
-   </graphic>
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-</Button>
 
-<Button fx:id="btnUsuario" layoutX="1150.0" layoutY="40.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Tu usuario">
-   <graphic>
-      <ImageView fitHeight="20" fitWidth="20">
-         <image>
-            <Image url="@../Imagenes/usuario.png" />
-         </image>
-      </ImageView>
-   </graphic>
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-</Button>
-
-
-      <ImageView fitHeight="899.0" fitWidth="652.0" layoutX="660.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Imagenes/Z.png" />
-         </image>
+      <ImageView fitHeight="899.0" fitWidth="652.0" layoutX="650.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+         <image><Image url="@../Imagenes/Z.png" /></image>
       </ImageView>
 
-      <Pane layoutX="-16.0" layoutY="106.0" prefHeight="142.0" prefWidth="1332.0" style="-fx-background-color: white;">
+      <Button fx:id="btnCarrito" layoutX="1000.0" layoutY="40.0" mnemonicParsing="false" onAction="#irAlCarrito" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Carrito de compras">
+         <graphic>
+            <ImageView fitHeight="20" fitWidth="20">
+               <image><Image url="@../Imagenes/iconoCarritonegro.png" /></image>
+            </ImageView>
+         </graphic>
+         <font><Font name="System Bold" size="12.0" /></font>
+      </Button>
+
+      <Button fx:id="btnUsuario" layoutX="1150.0" layoutY="40.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Tu usuario">
+         <graphic>
+            <ImageView fitHeight="20" fitWidth="20">
+               <image><Image url="@../Imagenes/usuario.png" /></image>
+            </ImageView>
+         </graphic>
+         <font><Font name="System Bold" size="12.0" /></font>
+      </Button>
+
+      <Pane layoutX="-16.0" layoutY="106.0" prefHeight="142.0" prefWidth="1316.0" style="-fx-background-color: white;">
          <children>
             <Label layoutX="629.0" layoutY="24.0" text="Tenis unisex Zova">
-               <font>
-                  <Font name="Bodoni MT Bold" size="41.0" />
-               </font>
+               <font><Font name="Bodoni MT Bold" size="41.0" /></font>
             </Label>
-            <Label layoutX="635.0" layoutY="75.0" text="Actitud moderna">
-               <font>
-                  <Font size="20.0" />
-               </font>
+            <Label layoutX="635.0" layoutY="75.0" text="A c t i t u d  m o d e r n a">
+               <font><Font size="20.0" /></font>
             </Label>
          </children>
       </Pane>
 
       <ImageView fitHeight="78.0" fitWidth="214.0" layoutX="563.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Imagenes/logo%20tienda%20sin%20fondo.png" />
-         </image>
+         <image><Image url="@../Imagenes/logo%20tienda%20sin%20fondo.png" /></image>
       </ImageView>
 
-      <Button layoutX="14.0" layoutY="28.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="112.0" style="-fx-background-color: #ffdcbc;" text="Hombre">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Button>
-      <Button layoutX="142.0" layoutY="28.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="124.0" style="-fx-background-color: #ffdcbc;" text="Mujer">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Button>
-      <Button layoutX="288.0" layoutY="28.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="143.0" style="-fx-background-color: #ffdcbc;" text="Lista de deseos">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Button>
+      <Button layoutX="14.0" layoutY="28.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="112.0" style="-fx-background-color: #ffdcbc; -fx-cursor: hand;" text="Hombre">
+         <font><Font name="System Bold" size="12.0" /></font>
+      </Button>
+
+      <Button layoutX="142.0" layoutY="28.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="124.0" style="-fx-background-color: #ffdcbc; -fx-cursor: hand;" text="Mujer">
+         <font><Font name="System Bold" size="12.0" /></font>
+      </Button>
+
+      <Button layoutX="288.0" layoutY="28.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="143.0" style="-fx-background-color: #ffdcbc; -fx-cursor: hand;" text="Lista de deseos">
+         <font><Font name="System Bold" size="12.0" /></font>
+      </Button>
 
       <ImageView fitHeight="488.0" fitWidth="431.0" layoutX="41.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Imagenes/zapato5.png" />
-         </image>
+         <image><Image url="@../Imagenes/zapato5.png" /></image>
       </ImageView>
 
-
-      <ToggleButton fx:id="btnFavorito" layoutX="420.0" layoutY="150.0" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: transparent;" />
+      <ToggleButton fx:id="btnFavorito" layoutX="420.0" layoutY="150.0" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: transparent; -fx-cursor: hand;" />
+      <ImageView fx:id="imgCorazon" fitHeight="39.0" fitWidth="38.0" layoutX="415.0" layoutY="529.0">
+         <image><Image url="@../Imagenes/corazon%20vacio.png" /></image>
+      </ImageView>
 
       <ImageView fx:id="star1" fitHeight="33.0" fitWidth="32.0" layoutX="241.0" layoutY="620.0">
-         <image>
-            <Image url="@../Imagenes/Estrella%20llena.png" />
-         </image>
+         <image><Image url="@../Imagenes/Estrella%20llena.png" /></image>
       </ImageView>
       <ImageView fx:id="star2" fitHeight="33.0" fitWidth="32.0" layoutX="41.0" layoutY="620.0">
-         <image>
-            <Image url="@../Imagenes/Estrella%20llena.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="star4" fitHeight="33.0" fitWidth="32.0" layoutX="110.0" layoutY="620.0">
-         <image>
-            <Image url="@../Imagenes/Estrella%20llena.png" />
-         </image>
+         <image><Image url="@../Imagenes/Estrella%20llena.png" /></image>
       </ImageView>
       <ImageView fx:id="star3" fitHeight="33.0" fitWidth="32.0" layoutX="172.0" layoutY="620.0">
-         <image>
-            <Image url="@../Imagenes/Estrella%20llena.png" />
-         </image>
+         <image><Image url="@../Imagenes/Estrella%20llena.png" /></image>
+      </ImageView>
+      <ImageView fx:id="star4" fitHeight="33.0" fitWidth="32.0" layoutX="110.0" layoutY="620.0">
+         <image><Image url="@../Imagenes/Estrella%20llena.png" /></image>
       </ImageView>
       <ImageView fx:id="star5" fitHeight="33.0" fitWidth="32.0" layoutX="300.0" layoutY="620.0">
-         <image>
-            <Image url="@../Imagenes/Estrella%20vacia.png" />
-         </image>
+         <image><Image url="@../Imagenes/Estrella%20vacia.png" /></image>
       </ImageView>
 
-      <Label layoutX="434.0" layoutY="617.0" prefHeight="39.0" prefWidth="38.0" text="4.7">
-         <font>
-            <Font size="25.0" />
-         </font>
+      <Label layoutX="434.0" layoutY="617.0" prefHeight="39.0" prefWidth="38.0" text="4.1">
+         <font><Font size="25.0" /></font>
       </Label>
       <Label layoutX="41.0" layoutY="691.0" prefHeight="33.0" prefWidth="171.0" text="R e s e ñ a s (58)" textFill="#757272">
-         <font>
-            <Font size="22.0" />
-         </font>
+         <font><Font size="22.0" /></font>
       </Label>
 
       <Label layoutX="620.0" layoutY="266.0" text="\$149.900">
-         <font>
-            <Font name="System Bold" size="23.0" />
-         </font>
+         <font><Font name="System Bold" size="23.0" /></font>
       </Label>
       <Label layoutX="624.0" layoutY="324.0" text="Talla">
-         <font>
-            <Font name="Bodoni MT Bold" size="20.0" />
-         </font>
+         <font><Font name="Bodoni MT Bold" size="20.0" /></font>
       </Label>
 
       <fx:define>
          <ToggleGroup fx:id="tallasGroup" />
       </fx:define>
 
-      <ToggleButton fx:id="talla36" layoutX="617.0" layoutY="360.0" style="-fx-background-radius: 20; -fx-background-color: #ffdcbc;" text="36">
-         <toggleGroup>
-            <ToggleGroup fx:id="tallasGroup" />
-         </toggleGroup></ToggleButton>
-      <ToggleButton fx:id="talla37" layoutX="667.0" layoutY="360.0" style="-fx-background-radius: 20; -fx-background-color: #ffdcbc;" text="37" toggleGroup="$tallasGroup" />
-      <ToggleButton fx:id="talla38" layoutX="713.0" layoutY="361.0" style="-fx-background-radius: 20; -fx-background-color: #ffdcbc;" text="38" toggleGroup="$tallasGroup" />
-      <ToggleButton fx:id="talla39" layoutX="764.0" layoutY="361.0" style="-fx-background-radius: 20; -fx-background-color: #ffdcbc;" text="39" toggleGroup="$tallasGroup" />
-      <ToggleButton fx:id="talla40" layoutX="810.0" layoutY="362.0" style="-fx-background-radius: 20; -fx-background-color: #ffdcbc;" text="40" toggleGroup="$tallasGroup" />
+      <ToggleButton fx:id="talla36" layoutX="617.0" layoutY="360.0" style="-fx-background-radius: 20; -fx-background-color: #ffdcbc; -fx-cursor: hand;" text="36">
+         <toggleGroup><ToggleGroup fx:id="tallasGroup" /></toggleGroup>
+      </ToggleButton>
+      <ToggleButton fx:id="talla37" layoutX="667.0" layoutY="360.0" style="-fx-background-radius: 20; -fx-background-color: #ffdcbc; -fx-cursor: hand;" text="37" toggleGroup="$tallasGroup" />
+      <ToggleButton fx:id="talla38" layoutX="713.0" layoutY="361.0" style="-fx-background-radius: 20; -fx-background-color: #ffdcbc; -fx-cursor: hand;" text="38" toggleGroup="$tallasGroup" />
+      <ToggleButton fx:id="talla39" layoutX="764.0" layoutY="361.0" style="-fx-background-radius: 20; -fx-background-color: #ffdcbc; -fx-cursor: hand;" text="39" toggleGroup="$tallasGroup" />
+      <ToggleButton fx:id="talla40" layoutX="810.0" layoutY="362.0" style="-fx-background-radius: 20; -fx-background-color: #ffdcbc; -fx-cursor: hand;" text="40" toggleGroup="$tallasGroup" />
 
       <VBox layoutX="617.0" layoutY="426.0" prefHeight="173.0" prefWidth="277.0" spacing="12">
          <children>
-
-            <TitledPane fx:id="titledDescripcion" expanded="false" prefWidth="250.0" text="Descripción">
+            <TitledPane fx:id="titledDescripcion" expanded="false" prefWidth="250.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="Descripción">
                <content>
                   <VBox>
-                     <Text text="Expresa tu autenticidad con los Tenis Zova, una declaración de actitud moderna y versatilidad sin límites. Su diseño unisex fusiona líneas limpias y estructura dinámica, ofreciendo confort y estilo para quienes caminan con personalidad propia. Zova no es solo calzado: es identidad en movimiento." wrappingWidth="230" />
+                     <Text text="Diseñados para quienes se expresan con autenticidad, los Tenis Zova fusionan funcionalidad con estilo urbano. Su silueta moderna y acabados neutros los convierten en el aliado perfecto para cualquier género, ritmo o rutina. Zova representa una actitud libre, versátil y actual.Unisex por diseño, moderno por esencia." wrappingWidth="230" />
                   </VBox>
                </content>
             </TitledPane>
 
-            <TitledPane fx:id="titledDetalles" expanded="false" prefWidth="250.0" text="Detalles">
+            <TitledPane fx:id="titledDetalles" expanded="false" prefWidth="250.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="Detalles">
                <content>
                   <VBox>
-                     <Text text="Exterior elaborado en tejido knit de alta flexibilidad con refuerzos termosellados para mayor durabilidad. Entresuela de EVA liviana que absorbe el impacto en cada paso. Suela exterior de goma con patrón geométrico para tracción multidireccional. Plantilla interior removible y anatómica con tecnología de memoria. Cordones elásticos para ajuste práctico y cómodo. Lengüeta integrada al diseño para un acabado más limpio. Detalles reflectantes en talón y empeine para visibilidad nocturna." wrappingWidth="230" />
+                     <Text text="El modelo Zova cuenta con un exterior en tejido técnico de alta flexibilidad, reforzado con paneles sintéticos en puntos clave para mayor soporte. Su diseño minimalista y de líneas limpias se adapta fácilmente a diferentes estilos. La suela de EVA con ranuras ergonómicas mejora la amortiguación y el confort en cada paso. La plantilla acolchada con memoria favorece el uso prolongado, mientras que los detalles reflectivos y tonos neutros brindan un acabado moderno y funcional." wrappingWidth="230" />
                   </VBox>
                </content>
             </TitledPane>
 
-            <TitledPane fx:id="titledCuidados" expanded="false" prefWidth="250.0" text="Cuidados">
+            <TitledPane fx:id="titledCuidados" expanded="false" prefWidth="250.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="Cuidados">
                <content>
                   <VBox>
-                     <Text text="Para mantener tus Tenis Zova en óptimas condiciones, límpialos regularmente con un paño húmedo y jabón neutro, evitando el uso de blanqueadores o productos abrasivos. Déjalos secar a la sombra en un lugar ventilado, lejos de fuentes de calor directo. No los laves en lavadora ni los sumerjas completamente en agua. Guarda los tenis en un lugar seco y utiliza hormas o papel dentro de ellos para conservar su forma original." wrappingWidth="230" />
+                     <Text text="Límpialos con un paño húmedo y jabón neutro solo en las áreas necesarias. Evita el uso de lavadora o sumergirlos completamente. Sécalos siempre a la sombra, lejos del sol directo o fuentes de calor. Guarda los tenis en un lugar seco, con papel en su interior para conservar su forma. Limpia los detalles reflectivos con cuidado para mantener su visibilidad y aspecto original." wrappingWidth="230" />
                   </VBox>
                </content>
             </TitledPane>
 
-            <Button fx:id="btnComprar" prefHeight="25.0" prefWidth="282.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 30;" text="Comprar" />
-            <Button fx:id="btnAgregarCarrito" prefHeight="25.0" prefWidth="280.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 30;" text="Agregar al Carrito" />
+            <Button fx:id="btnComprar" prefHeight="25.0" prefWidth="282.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 30; -fx-cursor: hand;" text="Comprar" />
+
+            <Button fx:id="btnAgregarCarrito" onAction="#agregarAlCarrito" prefHeight="25.0" prefWidth="280.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 30; -fx-cursor: hand;" text="Agregar al Carrito" />
          </children>
       </VBox>
-      <ImageView fx:id="imgCorazon" fitHeight="39.0" fitWidth="38.0" layoutX="415.0" layoutY="529.0">
-         <image>
-            <Image url="@../Imagenes/corazon%20vacio.png" />
-         </image>
-      </ImageView>
-      
-  <Button fx:id="btnRegresar" layoutX="1208.0" layoutY="820.0" mnemonicParsing="false" onAction="#irAPantallaPrincipal" style="-fx-background-color: transparent; -fx-cursor: hand;">
-   <graphic>
-      <ImageView fitHeight="39.0" fitWidth="43.0">
-         <image><Image url="@../Imagenes/flecha.png" /></image>
-      </ImageView>
-   </graphic>
-</Button>
+
+      <Button fx:id="btnRegresar" layoutX="1208.0" layoutY="820.0" mnemonicParsing="false" onAction="#irAPantallaPrincipal" style="-fx-background-color: transparent; -fx-cursor: hand;">
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="43.0">
+               <image><Image url="@../Imagenes/flecha.png" /></image>
+            </ImageView>
+         </graphic>
+      </Button>
 
    </children>
 </AnchorPane>

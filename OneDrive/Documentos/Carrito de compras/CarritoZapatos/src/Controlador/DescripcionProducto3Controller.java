@@ -4,24 +4,22 @@
  */
 package Controlador;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import Modelo.Carrito;
+import Modelo.Producto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.TitledPane;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class DescripcionProducto3Controller implements Initializable {
 
@@ -30,63 +28,16 @@ public class DescripcionProducto3Controller implements Initializable {
     @FXML private ToggleButton talla38;
     @FXML private ToggleButton talla39;
     @FXML private ToggleButton talla40;
-    @FXML private ToggleGroup tallasGroup;
-
-    @FXML private Button btnComprar;
-    @FXML private Button btnAgregarCarrito;
 
     @FXML private TitledPane titledDescripcion;
     @FXML private TitledPane titledDetalles;
     @FXML private TitledPane titledCuidados;
 
-    @FXML private ToggleButton btnFavorito;
-    @FXML private ImageView imgCorazon;
-
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        tallasGroup.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
-            if (newToggle != null) {
-                ToggleButton seleccionada = (ToggleButton) newToggle;
-                System.out.println("Talla seleccionada: " + seleccionada.getText());
-            }
-        });
-
-        btnComprar.setOnAction(e -> {
-            String talla = obtenerTallaSeleccionada();
-            if (talla != null) {
-                System.out.println("Comprando talla: " + talla);
-            } else {
-                System.out.println("Por favor selecciona una talla.");
-            }
-        });
-
-        btnAgregarCarrito.setOnAction(e -> {
-            String talla = obtenerTallaSeleccionada();
-            if (talla != null) {
-                System.out.println("Agregando al carrito talla: " + talla);
-            } else {
-                System.out.println("Por favor selecciona una talla.");
-            }
-        });
-
-        btnFavorito.setOnAction(e -> {
-            if (btnFavorito.isSelected()) {
-                imgCorazon.setImage(new Image(getClass().getResource("/Imagenes/corazon_lleno.png").toExternalForm()));
-                System.out.println("Añadido a favoritos");
-            } else {
-                imgCorazon.setImage(new Image(getClass().getResource("/Imagenes/corazon_vacio.png").toExternalForm()));
-                System.out.println("Quitado de favoritos");
-            }
-        });
-
+    public void initialize(URL location, ResourceBundle resources) {
         hacerTituloTransparente(titledDescripcion);
         hacerTituloTransparente(titledDetalles);
         hacerTituloTransparente(titledCuidados);
-    }
-
-    private String obtenerTallaSeleccionada() {
-        ToggleButton selected = (ToggleButton) tallasGroup.getSelectedToggle();
-        return selected != null ? selected.getText() : null;
     }
 
     private void hacerTituloTransparente(TitledPane pane) {
@@ -96,20 +47,71 @@ public class DescripcionProducto3Controller implements Initializable {
             if (titleRegion != null) {
                 titleRegion.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
             }
+
+            Region contentRegion = (Region) pane.lookup(".content");
+            if (contentRegion != null) {
+                contentRegion.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
+            }
         });
     }
-    
+
+    private String obtenerTallaSeleccionada() {
+        if (talla36.isSelected()) return "36";
+        if (talla37.isSelected()) return "37";
+        if (talla38.isSelected()) return "38";
+        if (talla39.isSelected()) return "39";
+        if (talla40.isSelected()) return "40";
+        return "Sin talla";
+    }
+
+    @FXML
+    private void agregarAlCarrito(ActionEvent event) {
+        String talla = obtenerTallaSeleccionada();
+        if (talla.equals("Sin talla")) {
+            System.out.println("Por favor selecciona una talla.");
+            return;
+        }
+
+        Producto producto = new Producto(
+            "Tenis hombre Oris",
+            "Estilo puro",
+            talla,
+            "4.4",
+            142500,
+            new Image(getClass().getResource("/Imagenes/Zapato3.png").toString())
+        );
+
+        Carrito.agregarProducto(producto);
+        System.out.println("Producto agregado al carrito: " + producto.getNombre());
+    }
+
+    @FXML
+    private void irAlCarrito(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/Carrito.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Carrito de compras");
+            stage.setScene(new Scene(root));
+            stage.show();
+            ((Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow()).close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     private void irAPantallaPrincipal(ActionEvent event) {
-    try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/PantallaPrincipal.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    } catch (IOException e) {
-        e.printStackTrace();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/PantallaPrincipal.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Tienda de Zapatos");
+            stage.setScene(new Scene(root));
+            stage.show();
+            ((Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow()).close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-}
 }

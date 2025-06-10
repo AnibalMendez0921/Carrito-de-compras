@@ -15,10 +15,10 @@ public class Producto {
     private String descripcion;
     private String talla;
     private String calificacion;
-    private String precio;
+    private double precio;
     private Image imagen;
 
-    public Producto(String nombre, String descripcion, String talla, String calificacion, String precio, Image imagen) {
+    public Producto(String nombre, String descripcion, String talla, String calificacion, double precio, Image imagen) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.talla = talla;
@@ -43,7 +43,7 @@ public class Producto {
         this.calificacion = calificacion;
     }
 
-    public void setPrecio(String precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
@@ -67,7 +67,7 @@ public class Producto {
         return calificacion;
     }
 
-    public String getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 

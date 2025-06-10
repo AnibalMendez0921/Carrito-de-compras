@@ -3,14 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Modelo;
-import java.util.List;
+
 /**
  *
- * @Josue Gómez y Anibal Mendez
+ * @author Josue Gómez y Anibal Mendez
  */
-
 public class Carrito {
-     private static NodoProducto cabeza = null;
+    private static NodoProducto cabeza = null;
 
     public static void agregarProducto(Producto producto) {
         NodoProducto nuevo = new NodoProducto(producto);
@@ -41,5 +40,23 @@ public class Carrito {
             actual = actual.getSiguiente();
         }
         return contador;
+    }
+
+    public static void eliminarProducto(Producto producto) {
+        if (producto == null || cabeza == null) return;
+
+        if (cabeza.getProducto().equals(producto)) {
+            cabeza = cabeza.getSiguiente();
+            return;
+        }
+
+        NodoProducto actual = cabeza;
+        while (actual.getSiguiente() != null) {
+            if (actual.getSiguiente().getProducto().equals(producto)) {
+                actual.setSiguiente(actual.getSiguiente().getSiguiente());
+                return;
+            }
+            actual = actual.getSiguiente();
+        }
     }
 }
