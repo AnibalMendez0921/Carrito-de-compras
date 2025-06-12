@@ -17,7 +17,7 @@ public class MainLogin extends Application {
 
    @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("ListaDeseo.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("PantallaPrincipal.fxml"));
         primaryStage.setTitle("Mi Aplicación JavaFX");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

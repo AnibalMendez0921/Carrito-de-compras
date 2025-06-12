@@ -6,6 +6,7 @@ package Controlador;
 
 import Modelo.Carrito;
 import Modelo.Producto;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -111,6 +112,18 @@ public class DescripcionProducto1Controller implements Initializable {
             stage.show();
             ((Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow()).close();
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void irAListaDeseos(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/Vista/ListaDeseos.fxml")); // Usa la ruta correcta según tu estructura
+            Stage stage = new Stage();
+            stage.setTitle("Lista de Deseos");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
