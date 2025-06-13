@@ -5,7 +5,9 @@
 package Controlador;
 
 import Modelo.Carrito;
+import Modelo.ListaDeseos;
 import Modelo.Producto;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +22,7 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.scene.image.ImageView;
 
 public class DescripcionProducto5Controller implements Initializable {
 
@@ -112,6 +115,44 @@ public class DescripcionProducto5Controller implements Initializable {
             ((Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow()).close();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    
+    public void irAListaDeseos(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/Vista/ListaDeseos.fxml")); 
+            Stage stage = new Stage();
+            stage.setTitle("Lista de Deseos");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+        @FXML
+private ImageView imgCorazon;
+
+private boolean esFavorito = false;
+
+@FXML
+    private void toggleFavorito() {
+        esFavorito = !esFavorito;
+        String imagen = esFavorito ? "/Imagenes/corazon_lleno.png" : "/Imagenes/corazon vacio.png";
+        imgCorazon.setImage(new Image(getClass().getResourceAsStream(imagen)));
+
+        if (esFavorito) {
+            String talla = obtenerTallaSeleccionada();
+            Producto producto = new Producto(
+                "Tenis unisex Zova",
+                "Actitud Moderna",
+                talla.equals("Sin talla") ? "Sin talla" : talla,
+                "4.1",
+                149900,
+                new Image(getClass().getResource("/Imagenes/Zapato5.png").toString())
+            );
+            ListaDeseos.agregar(producto);
+            System.out.println("Producto agregado a la lista de deseos: " + producto.getNombre());
         }
     }
 }

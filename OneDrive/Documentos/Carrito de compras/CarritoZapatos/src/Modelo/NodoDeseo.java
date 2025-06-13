@@ -4,11 +4,15 @@
  */
 package Modelo;
 
-public class NodoProducto {
-    private Producto producto;
-    private NodoProducto siguiente;
+/**
+ *
+ * @author aniba
+ */
+public class NodoDeseo {
+ private Producto producto;
+    private NodoDeseo siguiente;
 
-    public NodoProducto(Producto producto) {
+    public NodoDeseo(Producto producto) {
         this.producto = producto;
         this.siguiente = null;
     }
@@ -17,11 +21,11 @@ public class NodoProducto {
         return producto;
     }
 
-    public NodoProducto getSiguiente() {
+    public NodoDeseo getSiguiente() {
         return siguiente;
     }
 
-    public void setSiguiente(NodoProducto siguiente) {
+    public void setSiguiente(NodoDeseo siguiente) {
         this.siguiente = siguiente;
-    }
+    }    
 }

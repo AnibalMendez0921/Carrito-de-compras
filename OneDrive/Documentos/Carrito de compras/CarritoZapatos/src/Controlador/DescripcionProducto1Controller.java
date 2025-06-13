@@ -5,8 +5,8 @@
 package Controlador;
 
 import Modelo.Carrito;
+import Modelo.ListaDeseos;
 import Modelo.Producto;
-import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,9 +16,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -33,6 +35,10 @@ public class DescripcionProducto1Controller implements Initializable {
     @FXML private TitledPane titledDescripcion;
     @FXML private TitledPane titledDetalles;
     @FXML private TitledPane titledCuidados;
+
+    @FXML private ImageView imgCorazon;
+
+    private boolean esFavorito = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -115,16 +121,38 @@ public class DescripcionProducto1Controller implements Initializable {
             e.printStackTrace();
         }
     }
-    
-    public void irAListaDeseos(ActionEvent event) {
+
+    @FXML
+    private void irAListaDeseos(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/Vista/ListaDeseos.fxml")); // Usa la ruta correcta según tu estructura
+            Parent root = FXMLLoader.load(getClass().getResource("/Vista/ListaDeseos.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Lista de Deseos");
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void toggleFavorito() {
+        esFavorito = !esFavorito;
+        String imagen = esFavorito ? "/Imagenes/corazon_lleno.png" : "/Imagenes/corazon vacio.png";
+        imgCorazon.setImage(new Image(getClass().getResourceAsStream(imagen)));
+
+        if (esFavorito) {
+            String talla = obtenerTallaSeleccionada();
+            Producto producto = new Producto(
+                "Tenis hombre Bravé",
+                "Fuerza urbana",
+                talla.equals("Sin talla") ? "Sin talla" : talla,
+                "4.5",
+                169900,
+                new Image(getClass().getResource("/Imagenes/Zapato1.png").toString())
+            );
+            ListaDeseos.agregar(producto);
+            System.out.println("Producto agregado a la lista de deseos: " + producto.getNombre());
         }
     }
 }

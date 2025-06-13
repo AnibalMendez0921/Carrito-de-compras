@@ -11,15 +11,17 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane prefHeight="200.0" prefWidth="800.0" style="-fx-background-color: #FFE0C7; -fx-background-radius: 15; -fx-border-radius: 15;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.ItemDeseoController">
-    
-   
+<StackPane prefHeight="200.0" prefWidth="800.0" style="-fx-background-color: #FFE0C7; -fx-background-radius: 15; -fx-border-radius: 15;" 
+           xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" 
+           fx:controller="Controlador.ItemDeseoController">
+
     <VBox alignment="TOP_CENTER">
         <AnchorPane prefHeight="90" style="-fx-background-color: white; -fx-background-radius: 15 15 0 0;">
             <ImageView fx:id="logoMarca" fitHeight="90.0" layoutX="600.0" opacity="0.2" preserveRatio="true" AnchorPane.rightAnchor="10">
-            <image>
-               <Image url="@../Imagenes/logo%20tienda%20sin%20fondo.png" />
-            </image></ImageView>
+                <image>
+                    <Image url="@../Imagenes/logo%20tienda%20sin%20fondo.png" />
+                </image>
+            </ImageView>
         </AnchorPane>
         <Region prefHeight="110.0" />
     </VBox>
@@ -27,7 +29,8 @@
     <HBox alignment="TOP_LEFT" spacing="20" style="-fx-padding: 20;">
         
         <VBox alignment="TOP_CENTER" StackPane.alignment="TOP_LEFT">
-            <ImageView fx:id="imagenProducto" fitHeight="140.0" fitWidth="140.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 1);" />
+            <ImageView fx:id="imagenProducto" fitHeight="140.0" fitWidth="140.0" 
+                       style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 1);" />
         </VBox>
 
         <VBox prefWidth="400" spacing="8">
@@ -56,8 +59,12 @@
             </HBox>
 
             <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 10 0 0 0;">
-                <Button fx:id="moverBtn" onAction="#moverDelCarrito" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 20;" text="Mover del carrito" />
-                <Button fx:id="eliminarBtn" onAction="#eliminarItem" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 20; -fx-border-width: 0;" text="Eliminar" />
+                <Button fx:id="moverBtn" onAction="#moverDelCarrito" prefHeight="30.0" prefWidth="120.0"
+                        style="-fx-background-color: black; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 20;"
+                        text="Mover del carrito" />
+                <Button fx:id="eliminarBtn" onAction="#eliminarItem" prefHeight="30.0" prefWidth="120.0"
+                        style="-fx-background-color: white; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 20; -fx-border-width: 0;"
+                        text="Eliminar" />
             </HBox>
         </VBox>
     </HBox>
