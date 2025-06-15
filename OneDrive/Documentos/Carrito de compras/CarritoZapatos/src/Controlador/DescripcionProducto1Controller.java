@@ -40,22 +40,36 @@ public class DescripcionProducto1Controller implements Initializable {
 
     private boolean esFavorito = false;
 
+ 
+    private Producto productoActual;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         hacerTituloTransparente(titledDescripcion);
         hacerTituloTransparente(titledDetalles);
         hacerTituloTransparente(titledCuidados);
+
+        productoActual = new Producto(
+                "Tenis hombre Bravé",
+                "Fuerza urbana",
+                "Sin talla",
+                "4.5",
+                169900,
+                new Image(getClass().getResource("/Imagenes/Zapato1.png").toString()) 
+        );
     }
 
     private void hacerTituloTransparente(TitledPane pane) {
         pane.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
         pane.skinProperty().addListener((obs, oldSkin, newSkin) -> {
             Region titleRegion = (Region) pane.lookup(".title");
+
             if (titleRegion != null) {
                 titleRegion.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
             }
 
             Region contentRegion = (Region) pane.lookup(".content");
+
             if (contentRegion != null) {
                 contentRegion.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
             }
@@ -68,28 +82,25 @@ public class DescripcionProducto1Controller implements Initializable {
         if (talla38.isSelected()) return "38";
         if (talla39.isSelected()) return "39";
         if (talla40.isSelected()) return "40";
+
         return "Sin talla";
+    }
+
+    private void aplicarTallaAlProductoActual(){
+        productoActual.setTalla(obtenerTallaSeleccionada()); 
     }
 
     @FXML
     private void agregarAlCarrito(ActionEvent event) {
-        String talla = obtenerTallaSeleccionada();
-        if (talla.equals("Sin talla")) {
+        aplicarTallaAlProductoActual();
+
+        if (productoActual.getTalla().equals("Sin talla")) {
             System.out.println("Por favor selecciona una talla.");
             return;
         }
 
-        Producto producto = new Producto(
-            "Tenis hombre Bravé",
-            "Fuerza urbana",
-            talla,
-            "4.5",
-            169900,
-            new Image(getClass().getResource("/Imagenes/Zapato1.png").toString())
-        );
-
-        Carrito.agregarProducto(producto);
-        System.out.println("Producto agregado al carrito: " + producto.getNombre());
+        Carrito.agregarProducto(productoActual);
+        System.out.println("Producto agregado al carrito: " + productoActual.getNombre()); 
     }
 
     @FXML
@@ -99,10 +110,14 @@ public class DescripcionProducto1Controller implements Initializable {
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Carrito de compras");
+
             stage.setScene(new Scene(root));
+
             stage.show();
+
             ((Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow()).close();
-        } catch (Exception e) {
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -114,45 +129,54 @@ public class DescripcionProducto1Controller implements Initializable {
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Tienda de Zapatos");
-            stage.setScene(new Scene(root));
-            stage.show();
-            ((Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow()).close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
-    @FXML
-    private void irAListaDeseos(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/Vista/ListaDeseos.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Lista de Deseos");
             stage.setScene(new Scene(root));
+
             stage.show();
+
+            ((Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow()).close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
+private void irAListaDeseos(ActionEvent event) {
+    try {
+        Parent root = FXMLLoader.load(getClass().getResource("/Vista/ListaDeseos.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Lista de Deseos");
+
+        stage.setScene(new Scene(root));
+
+        stage.show();
+
+
+        ((Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow()).close();
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+
+    @FXML
     private void toggleFavorito() {
         esFavorito = !esFavorito;
+
         String imagen = esFavorito ? "/Imagenes/corazon_lleno.png" : "/Imagenes/corazon vacio.png";
+
         imgCorazon.setImage(new Image(getClass().getResourceAsStream(imagen)));
 
+        aplicarTallaAlProductoActual();
+
         if (esFavorito) {
-            String talla = obtenerTallaSeleccionada();
-            Producto producto = new Producto(
-                "Tenis hombre Bravé",
-                "Fuerza urbana",
-                talla.equals("Sin talla") ? "Sin talla" : talla,
-                "4.5",
-                169900,
-                new Image(getClass().getResource("/Imagenes/Zapato1.png").toString())
-            );
-            ListaDeseos.agregar(producto);
-            System.out.println("Producto agregado a la lista de deseos: " + producto.getNombre());
+            ListaDeseos.agregar(productoActual);
+            System.out.println("Producto agregado a la lista de deseos.");
+        } else {
+            ListaDeseos.eliminar(productoActual);
+            System.out.println("Producto eliminado de la lista de deseos.");
         }
     }
 }

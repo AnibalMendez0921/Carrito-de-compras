@@ -1,25 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package Controlador;
 
 import Modelo.ListaDeseos;
-import Modelo.NodoDeseo;
 import Modelo.Producto;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.scene.layout.AnchorPane;
+
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+
+import javafx.stage.Stage;
+
+import javafx.event.ActionEvent;
 
 public class ListaDeseosController implements Initializable {
 
@@ -32,32 +33,43 @@ public class ListaDeseosController implements Initializable {
     }
 
     private void cargarListaDeseos() {
-        NodoDeseo actual = ListaDeseos.getPrimero();
+        listaItemsVBox.getChildren().clear();
 
-        while (actual != null) {
+        for (Producto producto : ListaDeseos.getListaDeseos()) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/ItemDeseo.fxml"));
-                StackPane item = (StackPane) loader.load(); 
-
+                StackPane item = loader.load();
 
                 ItemDeseoController controller = loader.getController();
-                controller.setProducto(actual.getProducto());
+                controller.setProducto(producto);
+                controller.setParentController(this);
 
                 listaItemsVBox.getChildren().add(item);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            actual = actual.getSiguiente();
         }
     }
 
+  
+    public void refreshListView(){
+        cargarListaDeseos();
+    }
+
     @FXML
-    private void regresar(javafx.event.ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/PantallaPrincipal.fxml"));
-        Parent root = loader.load();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+    private void regresar(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/PantallaPrincipal.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setScene(new Scene(root));
+
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

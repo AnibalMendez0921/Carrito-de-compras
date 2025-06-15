@@ -36,6 +36,10 @@ public class DescripcionProducto5Controller implements Initializable {
     @FXML private TitledPane titledDetalles;
     @FXML private TitledPane titledCuidados;
 
+    @FXML private ImageView imgCorazon;
+
+    private boolean esFavorito = false;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         hacerTituloTransparente(titledDescripcion);
@@ -47,11 +51,13 @@ public class DescripcionProducto5Controller implements Initializable {
         pane.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
         pane.skinProperty().addListener((obs, oldSkin, newSkin) -> {
             Region titleRegion = (Region) pane.lookup(".title");
+
             if (titleRegion != null) {
                 titleRegion.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
             }
 
             Region contentRegion = (Region) pane.lookup(".content");
+
             if (contentRegion != null) {
                 contentRegion.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
             }
@@ -64,6 +70,7 @@ public class DescripcionProducto5Controller implements Initializable {
         if (talla38.isSelected()) return "38";
         if (talla39.isSelected()) return "39";
         if (talla40.isSelected()) return "40";
+
         return "Sin talla";
     }
 
@@ -76,16 +83,16 @@ public class DescripcionProducto5Controller implements Initializable {
         }
 
         Producto producto = new Producto(
-            "Tenis unisex Zova",
-            "Actitud moderna",
-            talla,
-            "4.1",
-            149900,
-            new Image(getClass().getResource("/Imagenes/Zapato5.png").toString())
+                "Tenis unisex Zova",
+                "Actitud moderna",
+                talla,
+                "4.1",
+                149900,
+                new Image(getClass().getResource("/Imagenes/Zapato5.png").toString()) 
         );
 
         Carrito.agregarProducto(producto);
-        System.out.println("Producto agregado al carrito: " + producto.getNombre());
+        System.out.println("Producto agregado al carrito: " + producto.getNombre()); 
     }
 
     @FXML
@@ -95,9 +102,13 @@ public class DescripcionProducto5Controller implements Initializable {
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Carrito de compras");
+
             stage.setScene(new Scene(root));
+
             stage.show();
+
             ((Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow()).close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -110,49 +121,58 @@ public class DescripcionProducto5Controller implements Initializable {
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Tienda de Zapatos");
+
             stage.setScene(new Scene(root));
+
             stage.show();
+
             ((Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow()).close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
+    @FXML
     public void irAListaDeseos(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/Vista/ListaDeseos.fxml")); 
             Stage stage = new Stage();
             stage.setTitle("Lista de Deseos");
+
             stage.setScene(new Scene(root));
+
             stage.show();
+
+            ((Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow()).close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     
-        @FXML
-private ImageView imgCorazon;
-
-private boolean esFavorito = false;
-
-@FXML
+    @FXML
     private void toggleFavorito() {
         esFavorito = !esFavorito;
+
         String imagen = esFavorito ? "/Imagenes/corazon_lleno.png" : "/Imagenes/corazon vacio.png";
+
         imgCorazon.setImage(new Image(getClass().getResourceAsStream(imagen)));
 
         if (esFavorito) {
             String talla = obtenerTallaSeleccionada();
+
             Producto producto = new Producto(
-                "Tenis unisex Zova",
-                "Actitud Moderna",
-                talla.equals("Sin talla") ? "Sin talla" : talla,
-                "4.1",
-                149900,
-                new Image(getClass().getResource("/Imagenes/Zapato5.png").toString())
+                    "Tenis unisex Zova",
+                    "Actitud moderna",
+                    talla.equals("Sin talla") ? "Sin talla" : talla,
+                    "4.1",
+                    149900,
+                    new Image(getClass().getResource("/Imagenes/Zapato5.png").toString()) 
             );
+
             ListaDeseos.agregar(producto);
-            System.out.println("Producto agregado a la lista de deseos: " + producto.getNombre());
+            System.out.println("Producto agregado a la lista de deseos: " + producto.getNombre()); 
         }
     }
 }

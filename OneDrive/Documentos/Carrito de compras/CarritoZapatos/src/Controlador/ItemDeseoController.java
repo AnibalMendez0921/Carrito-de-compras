@@ -4,9 +4,12 @@
  */
 package Controlador;
 
+import Modelo.ListaDeseos;
 import Modelo.Producto;
+
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,13 +18,14 @@ import javafx.scene.image.ImageView;
 
 public class ItemDeseoController implements Initializable {
 
-    @FXML private ImageView imagenProducto;      
+    @FXML private ImageView imagenProducto;
     @FXML private Label nombreProducto;
-    @FXML private Label descripcionProducto;
     @FXML private Label precioProducto;
     @FXML private Label calificacionProducto;
 
     private Producto producto;
+
+    private ListaDeseosController parentController;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -34,11 +38,10 @@ public class ItemDeseoController implements Initializable {
 
     private void cargarDatos() {
         if (producto != null) {
-            imagenProducto.setImage(producto.getImagen());
-            nombreProducto.setText(producto.getNombre());
-            descripcionProducto.setText(producto.getDescripcion());
+            imagenProducto.setImage(producto.getImagen()); 
+            nombreProducto.setText(producto.getNombre());  
             precioProducto.setText(String.format("$ %.2f", producto.getPrecio()));
-            calificacionProducto.setText(String.valueOf(producto.getCalificacion()));
+            calificacionProducto.setText(producto.getCalificacion()); 
         }
     }
 
@@ -49,7 +52,17 @@ public class ItemDeseoController implements Initializable {
 
     @FXML
     private void eliminarItem(ActionEvent event) {
+        if (producto == null) return;
+
+        ListaDeseos.eliminar(producto);
         System.out.println("Producto eliminado de la lista de deseos.");
+
+        if (parentController != null) {
+            parentController.refreshListView();
+        }
+    }
+
+    public void setParentController(ListaDeseosController parentController) {
+        this.parentController = parentController;
     }
 }
-

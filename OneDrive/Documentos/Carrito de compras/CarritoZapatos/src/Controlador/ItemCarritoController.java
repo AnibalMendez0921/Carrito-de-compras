@@ -65,12 +65,16 @@ public class ItemCarritoController {
         this.carritoController = carritoController;
     }
 
-   @FXML
+  @FXML
 private void sumarCantidad() {
     cantidad++;
     cantidadLabel.setText(String.valueOf(cantidad));
-    if (carritoController != null) 
+    if (producto != null) {
+        producto.setCantidad(cantidad);
+    }
+    if (carritoController != null) {
         carritoController.actualizarResumen();  
+    }
 }
 
 @FXML
@@ -78,8 +82,12 @@ private void restarCantidad() {
     if (cantidad > 1) {
         cantidad--;
         cantidadLabel.setText(String.valueOf(cantidad));
-        if (carritoController != null) 
+        if (producto != null) {
+            producto.setCantidad(cantidad); 
+        }
+        if (carritoController != null) {
             carritoController.actualizarResumen();
+        }
     }
 }
 

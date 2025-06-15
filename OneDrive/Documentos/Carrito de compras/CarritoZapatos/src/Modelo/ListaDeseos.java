@@ -4,27 +4,24 @@
  */
 package Modelo;
 
-/**
- *
- * @author aniba
- */
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class ListaDeseos {
-private static NodoDeseo primero;
+
+    private static final ObservableList<Producto> listaDeseos = FXCollections.observableArrayList();
 
     public static void agregar(Producto producto) {
-        NodoDeseo nuevo = new NodoDeseo(producto);
-        if (primero == null) {
-            primero = nuevo;
-        } else {
-            NodoDeseo temp = primero;
-            while (temp.getSiguiente() != null) {
-                temp = temp.getSiguiente();
-            }
-            temp.setSiguiente(nuevo);
+        if (!listaDeseos.contains(producto)) {
+            listaDeseos.add(producto);
         }
     }
 
-    public static NodoDeseo getPrimero() {
-        return primero;
-    }    
+    public static void eliminar(Producto producto) {
+        listaDeseos.remove(producto);
+    }
+
+    public static ObservableList<Producto> getListaDeseos(){
+        return listaDeseos;
+    }
 }

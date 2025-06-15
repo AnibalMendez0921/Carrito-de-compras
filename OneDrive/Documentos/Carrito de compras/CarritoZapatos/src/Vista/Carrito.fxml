@@ -24,22 +24,37 @@
         </padding>
         <ImageView fx:id="logoImage" fitHeight="50" fitWidth="159.0">
             <image>
-                <Image url="@../Imagenes/Zcarpe%20blanco.png" />
+                <Image url="@../Imagenes/Zcarpe blanco.png" />
             </image>
         </ImageView>
         <Region prefHeight="50.0" prefWidth="285.0" />
-        <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Carrito de compras " textFill="white">
+        <Label prefHeight="35.0" prefWidth="290.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Carrito de compras " textFill="white">
             <font><Font name="Bodoni MT" size="24.0" /></font>
         </Label>
         <ImageView fx:id="userIcon" fitHeight="53.0" fitWidth="45.0">
             <image>
-                <Image url="@../Imagenes/icono%20bolsa.png" />
+                <Image url="@../Imagenes/icono bolsa.png" />
             </image>
         </ImageView>
-        <Region HBox.hgrow="ALWAYS" />
-        <Label prefHeight="16.0" prefWidth="102.0" text="Tu usuario 👤" textFill="white">
-            <font><Font name="Arial Narrow" size="14.0" /></font>
-        </Label>
+        <Region prefHeight="53.0" prefWidth="329.0" HBox.hgrow="ALWAYS" />
+      <Button mnemonicParsing="false" onAction="#Historial" prefHeight="25.0" prefWidth="148.0" style="-fx-background-color: black;" text="Button">
+         <graphic>
+              <Label prefHeight="16.0" prefWidth="140.0" text="Historial de compras" textFill="white">
+                  <font>
+                  <Font name="Arial Narrow" size="14.0" />
+               </font>
+              </Label>
+         </graphic>
+      </Button>
+      <Button mnemonicParsing="false" style="-fx-background-color: black;" text="Button">
+         <graphic>
+            <Label prefHeight="16.0" prefWidth="81.0" text="Tu usuario 👤" textFill="white">
+               <font>
+                  <Font name="Arial Narrow" size="14.0" />
+               </font>
+            </Label>
+         </graphic>
+      </Button>
     </HBox>
 
     <ScrollPane fitToWidth="true" layoutX="45.0" layoutY="104.0" prefHeight="668.0" prefWidth="816.0">
@@ -128,7 +143,7 @@
             <children>
                 <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="103.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../Imagenes/Zcarpe%20blanco.png" />
+                        <Image url="@../Imagenes/Zcarpe blanco.png" />
                     </image>
                 </ImageView>
             </children>
@@ -138,9 +153,11 @@
         </effect>
     </AnchorPane>
 
-    <Button fx:id="pagarButton" layoutX="129.0" layoutY="808.0" prefHeight="35.0" prefWidth="750.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 30;" text="Pagar">
-        <font><Font name="Arial Narrow" size="14.0" /></font>
-    </Button>
+   <Button fx:id="pagarButton" layoutX="129.0" layoutY="808.0" onAction="#onComprar" prefHeight="35.0" prefWidth="750.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 30;" text="Pagar">
+    <font>
+        <Font name="Arial Narrow" size="14.0" />
+    </font>
+</Button>
 
     <Button fx:id="btnRegresar" layoutX="57.0" layoutY="799.0" mnemonicParsing="false" onAction="#irAVerMas" style="-fx-background-color: transparent; -fx-cursor: hand;">
         <graphic>

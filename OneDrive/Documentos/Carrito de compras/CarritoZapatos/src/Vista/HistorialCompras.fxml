@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="993.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.HistorialComprasController">
+
+
+    <HBox alignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <Button onAction="#onSeguirComprando" prefHeight="25.0" prefWidth="496.0" style="-fx-background-radius: 30 30 30 30; -fx-background-color: black;" text="Seguir comprando" textFill="WHITE" />
+    </HBox>
+
+
+    <ScrollPane fx:id="scrollPaneCompras" layoutY="88.0" prefHeight="452.0" prefWidth="968.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="88.0">
+        <VBox fx:id="vBoxCompras" spacing="20">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
+            
+        </VBox>
+    </ScrollPane>
+   <Pane layoutY="-6.0" prefHeight="66.0" prefWidth="1295.0" style="-fx-background-color: black;">
+      <children>
+        
+          <Label layoutX="528.0" layoutY="21.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Historial de compras" textFill="WHITE" />
+         <ImageView fitHeight="44.0" fitWidth="43.0" layoutX="737.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../Imagenes/HCompra.png" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="91.0" fitWidth="145.0" layoutX="30.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../Imagenes/Zcarpe%20blanco.png" />
+            </image>
+         </ImageView>
+         <Button layoutX="931.0" layoutY="17.0" mnemonicParsing="false" style="-fx-background-color: black;" text="Carrito de compras" textFill="WHITE">
+            <graphic>
+               <ImageView fitHeight="29.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../Imagenes/icono%20bolsa.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
+         <Button layoutX="1146.0" layoutY="19.0" mnemonicParsing="false" style="-fx-background-color: black;" text="Usuario" textFill="WHITE">
+            <graphic>
+               <ImageView fitHeight="29.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../Imagenes/image%207.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
+      </children>
+   </Pane>
+
+</AnchorPane>
