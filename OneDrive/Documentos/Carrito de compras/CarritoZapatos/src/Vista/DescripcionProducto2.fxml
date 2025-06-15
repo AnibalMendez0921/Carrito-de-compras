@@ -149,7 +149,7 @@
                </content>
             </TitledPane>
 
-            <Button fx:id="btnComprar" prefHeight="25.0" prefWidth="282.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 30; -fx-cursor: hand;" text="Comprar" />
+            <Button fx:id="btnComprar" onAction="#comprarAhora" prefHeight="25.0" prefWidth="282.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 30; -fx-cursor: hand;" text="Comprar" />
 
             <Button fx:id="btnAgregarCarrito" onAction="#agregarAlCarrito" prefHeight="25.0" prefWidth="280.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 30; -fx-cursor: hand;" text="Agregar al Carrito" />
          </children>

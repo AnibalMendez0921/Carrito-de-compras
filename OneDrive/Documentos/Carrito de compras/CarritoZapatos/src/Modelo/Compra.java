@@ -14,6 +14,7 @@ public class Compra {
     private List<Producto> productos;
     private LocalDate fecha;
     private String detalle;
+    private double total; 
 
     public Compra(List<Producto> productos, LocalDate fecha) {
         this.productos = productos;
@@ -52,8 +53,18 @@ public class Compra {
         return detalle;
     }
 
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
     @Override
     public String toString() {
         return "Fecha: " + fecha + ", productos: " + productos.toString();
     }
 }
+

@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
+import java.util.Random;
+
 public class ItemHistorialCompraController {
 
     @FXML private Label labelFechaCompra;
@@ -20,25 +22,49 @@ public class ItemHistorialCompraController {
     @FXML private Label labelGuia;
     @FXML private Label labelTotal;
     @FXML private Label labelEstado;
-    
-    
-    @FXML
-    private TextArea textAreaDetalle;
+
+    @FXML private TextArea textAreaDetalle;
+
+    private static final double COSTO_ENVIO = 20000.0;
 
     public void setCompra(Compra compra) {
         labelFechaCompra.setText(compra.getFecha().toString());
-        labelNumeroPedido.setText("001");
-        Producto p = compra.getProductos().get(0); 
-        
+        labelNumeroPedido.setText(generarNumeroPedido());
         labelFechaEntrega.setText(compra.getFecha().plusDays(3).toString());
-        labelDireccion.setText("Mi dirección");
-        labelMetodoPago.setText("Tarjeta");
-        labelGuia.setText("123ABC");
-        labelTotal.setText(String.format("$%,.2f", (p.getPrecio() * p.getCantidad())+20000));
-        labelEstado.setText("Entregado");
+
+        textAreaDetalle.setText(compra.getDetalle());
+        labelDireccion.setText(compra.getDireccion());
+        labelMetodoPago.setText(compra.getMetodoPago());
+        labelGuia.setText(generarCodigoGuia());
+        labelEstado.setText("En camino");
+
+        double total = compra.getTotal();
+
+        if (total == 0 && compra.getProductos() != null && !compra.getProductos().isEmpty()) {
+            total = compra.getProductos().stream()
+                    .mapToDouble(p -> {
+                        int cantidad = p.getCantidad() > 0 ? p.getCantidad() : 1;
+                        return p.getPrecio() * cantidad;
+                    }).sum();
+            total += COSTO_ENVIO;
+        }
+
+        labelTotal.setText(String.format("$%,.2f", total));
     }
-    
-    public void setDetalle(String detalle) {
-    textAreaDetalle.setText(detalle);
-}
+
+    private String generarNumeroPedido() {
+        Random random = new Random();
+        int numero = 100 + random.nextInt(900); 
+        return "PED-" + numero;
+    }
+
+    private String generarCodigoGuia() {
+        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 6; i++) {
+            sb.append(caracteres.charAt(random.nextInt(caracteres.length())));
+        }
+        return sb.toString();
+    }
 }

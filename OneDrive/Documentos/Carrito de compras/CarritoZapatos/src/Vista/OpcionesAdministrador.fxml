@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="869.0" prefWidth="1290.0" style="-fx-background-color: #ffdcbc;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.OpcionesAdministradorController">
+   <children>
+      <Pane layoutY="6.0" prefHeight="847.0" prefWidth="297.0" style="-fx-background-radius: 30 30 30 30; -fx-background-color: white;">
+         <children>
+            <Pane layoutX="-3.0" prefHeight="70.0" prefWidth="305.0" style="-fx-background-radius: 30 30 0 0; -fx-background-color: black;">
+               <children>
+                  <ImageView fitHeight="48.0" fitWidth="176.0" layoutX="109.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/Zcarpe blanco.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="42.0" layoutY="84.0" prefHeight="218.0" prefWidth="192.0" style="-fx-background-radius: 100; -fx-background-color: black;">
+               <children>
+                  <Label layoutX="38.0" layoutY="43.0" prefHeight="132.0" prefWidth="117.0" text="TU" textFill="WHITE">
+                     <font>
+                        <Font name="Bodoni MT" size="79.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label layoutX="106.0" layoutY="350.0" text="\@tu usuario" />
+            <Label layoutX="79.0" layoutY="390.0" text="tu-mail54@gmail.com" />
+            <Separator layoutX="27.0" layoutY="461.0" prefHeight="10.0" prefWidth="222.0" />
+            <Button layoutX="74.0" layoutY="512.0" mnemonicParsing="false" text="Tus Compras" style="-fx-background-color: transparent; -fx-cursor: hand;">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/iconoCarritonegro.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="77.0" layoutY="587.0" mnemonicParsing="false" text="Tus Deseos" style="-fx-background-color: transparent; -fx-cursor: hand;">
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/corazon vacio.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Separator layoutX="27.0" layoutY="655.0" prefHeight="3.0" prefWidth="222.0" />
+            <Button layoutX="87.0" layoutY="726.0" mnemonicParsing="false" text="Cerrar sesión" style="-fx-background-color: transparent; -fx-cursor: hand;" />
+         </children>
+      </Pane>
+      <ImageView fitHeight="775.0" fitWidth="926.0" layoutX="329.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/image.png" />
+         </image>
+         <effect>
+            <BoxBlur height="11.0" iterations="3" />
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="783.0" fitWidth="915.0" layoutX="321.0" layoutY="37.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/Subtract (1).png" />
+         </image>
+      </ImageView>
+
+      <Pane layoutX="347.0" layoutY="425.0" prefHeight="376.0" prefWidth="534.0" style="-fx-background-color: rgba(255,255,255,0.6); -fx-background-radius: 30 30 30 30;">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="37.0" prefWidth="293.0" style="-fx-background-radius: 30 30 30 30; -fx-background-color: white;" text="Tu información personal" textAlignment="CENTER">
+               <font>
+                  <Font name="Bodoni MT" size="25.0" />
+               </font>
+            </Label>
+            <Button layoutX="219.0" layoutY="337.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-background-radius: 30 30 30 30; -fx-background-color: gray; -fx-cursor: hand;" text="Agregar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Separator layoutX="26.0" layoutY="325.0" prefHeight="3.0" prefWidth="491.0" />
+            <Button layoutX="408.0" layoutY="109.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-background-radius: 30 30 30 30; -fx-background-color: gray; -fx-cursor: hand;" text="Eliminar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label layoutX="26.0" layoutY="64.0" text="Tarjeta principal:" />
+            <Label layoutX="26.0" layoutY="89.0" text="label:" />
+            <Label layoutX="26.0" layoutY="113.0" text="Vence:" />
+            <Label layoutX="26.0" layoutY="137.0" text="Titular:" />
+            <Separator layoutX="22.0" layoutY="176.0" prefHeight="3.0" prefWidth="491.0" />
+            <Label layoutX="101.0" layoutY="89.0" text="Label" />
+            <Label layoutX="74.0" layoutY="113.0" text="Label" />
+            <Label layoutX="74.0" layoutY="137.0" text="Label" />
+            <Label layoutX="26.0" layoutY="199.0" text="Tarjeta Secundaria:" />
+            <Label layoutX="26.0" layoutY="235.0" text="label:" />
+            <Label layoutX="111.0" layoutY="235.0" text="Label" />
+            <Label layoutX="26.0" layoutY="263.0" text="Vence:" />
+            <Label layoutX="74.0" layoutY="263.0" text="Label" />
+            <Label layoutX="25.0" layoutY="290.0" text="Titular:" />
+            <Label layoutX="74.0" layoutY="290.0" text="Label" />
+            <Button layoutX="408.0" layoutY="271.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-background-radius: 30 30 30 30; -fx-background-color: gray; -fx-cursor: hand;" text="Eliminar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+
+      <Pane layoutX="346.0" layoutY="69.0" prefHeight="328.0" prefWidth="525.0" style="-fx-background-color: rgba(255,255,255,0.6); -fx-background-radius: 30 30 30 30;">
+         <children>
+            <Label layoutX="18.0" layoutY="7.0" prefHeight="37.0" prefWidth="293.0" style="-fx-background-radius: 30 30 30 30; -fx-background-color: white;" text="Tu información personal" textAlignment="CENTER">
+               <font>
+                  <Font name="Bodoni MT" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="29.0" layoutY="61.0" text="Nombres Completos:" />
+            <Label layoutX="29.0" layoutY="101.0" text="Documento:" />
+            <Label layoutX="29.0" layoutY="147.0" text="Correo:" />
+            <Label layoutX="31.0" layoutY="191.0" text="Telefono:" />
+            <Label layoutX="31.0" layoutY="239.0" text="Direccion de residencia:" />
+            <Button layoutX="378.0" layoutY="274.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-background-radius: 30 30 30 30; -fx-background-color: gray; -fx-cursor: hand;" text="Editar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label layoutX="165.0" layoutY="61.0" text="Label" />
+            <Label layoutX="113.0" layoutY="101.0" text="Label" />
+            <Label layoutX="88.0" layoutY="147.0" text="Label" />
+            <Label layoutX="98.0" layoutY="191.0" text="Label" />
+            <Label layoutX="165.0" layoutY="239.0" text="Label" />
+         </children>
+      </Pane>
+
+      <Pane layoutX="908.0" layoutY="70.0" prefHeight="713.0" prefWidth="293.0" style="-fx-background-color: rgba(255,255,255,0.6); -fx-background-radius: 30 30 30 30;">
+         <children>
+            <Label layoutX="22.0" layoutY="14.0" prefHeight="37.0" prefWidth="250.0" style="-fx-background-radius: 30 30 30 30; -fx-background-color: white;" text="Seguridad" textAlignment="CENTER">
+               <font>
+                  <Font name="Bodoni MT" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="137.0" text="Cambiar contraseña:" />
+            <Label layoutX="155.0" layoutY="137.0" text="●●●●●●" />
+            <Button layoutX="25.0" layoutY="226.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="236.0" style="-fx-background-radius: 30 30 30 30; -fx-background-color: gray; -fx-cursor: hand;" text="Cambiar contraseña" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label layoutX="30.0" layoutY="317.0" text="Verificación en dos pasos (2FA)" />
+            <CheckBox layoutX="32.0" layoutY="375.0" text="Activar via correo" />
+            <CheckBox layoutX="30.0" layoutY="438.0" text="Activar via SMS" />
+            <Button layoutX="25.0" layoutY="535.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="236.0" style="-fx-background-radius: 30 30 30 30; -fx-background-color: gray; -fx-cursor: hand;" text="Configurar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
