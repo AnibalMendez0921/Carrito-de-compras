@@ -9,60 +9,49 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" 
-            xmlns:fx="http://javafx.com/fxml/1" 
-            fx:controller="Controlador.ItemPAdministradorController" 
-            prefHeight="179.0" prefWidth="633.0">
+<AnchorPane prefHeight="174.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.ItemPAdministradorController">
 
    <children>
-      <HBox layoutY="40.0" prefHeight="100.0" prefWidth="643.0">
+      <HBox layoutY="40.0" prefHeight="100.0" prefWidth="758.0">
          <children>
 
 
-            <Pane prefHeight="100.0" prefWidth="111.0">
+            <Pane prefHeight="100.0" prefWidth="211.0">
                <children>
-                  <ImageView fx:id="imagenProducto" fitHeight="100.0" fitWidth="117.0" 
-                             layoutX="-4.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imagenProducto" fitHeight="100.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </Pane>
 
-            <Pane prefHeight="100.0" prefWidth="111.0">
+            <Pane prefHeight="100.0" prefWidth="203.0">
                <children>
-                  <Label fx:id="labelNombre" layoutX="10.0" layoutY="42.0" 
-                         prefHeight="17.0" prefWidth="93.0" text="Nombre" style="-fx-cursor: hand;" />
+                  <Label fx:id="labelNombre" layoutX="10.0" layoutY="42.0" prefHeight="17.0" prefWidth="93.0" style="-fx-cursor: hand;" text="Nombre" />
                </children>
             </Pane>
 
-            <Pane prefHeight="100.0" prefWidth="111.0">
+            <Pane prefHeight="100.0" prefWidth="143.0">
                <children>
-                  <Label fx:id="labelPrecio" layoutX="9.0" layoutY="42.0" 
-                         prefHeight="17.0" prefWidth="93.0" text="Precio" style="-fx-cursor: hand;" />
-               </children>
-            </Pane>
-
-
-            <Pane prefHeight="100.0" prefWidth="111.0">
-               <children>
-                  <Label fx:id="labelTalla" layoutX="9.0" layoutY="42.0" 
-                         prefHeight="17.0" prefWidth="93.0" text="Talla" style="-fx-cursor: hand;" />
+                  <Label fx:id="labelPrecio" layoutX="9.0" layoutY="42.0" prefHeight="17.0" prefWidth="93.0" style="-fx-cursor: hand;" text="Precio" />
                </children>
             </Pane>
 
 
-            <Pane prefHeight="100.0" prefWidth="111.0">
+            <Pane prefHeight="100.0" prefWidth="142.0">
                <children>
-                  <Label fx:id="labelStock" layoutX="9.0" layoutY="42.0" 
-                         prefHeight="17.0" prefWidth="93.0" text="Stock" style="-fx-cursor: hand;" />
+                  <Label fx:id="labelTalla" layoutX="9.0" layoutY="42.0" prefHeight="17.0" prefWidth="93.0" style="-fx-cursor: hand;" text="Talla" />
+               </children>
+            </Pane>
+
+
+            <Pane prefHeight="100.0" prefWidth="145.0">
+               <children>
+                  <Label fx:id="labelStock" layoutX="9.0" layoutY="42.0" prefHeight="17.0" prefWidth="93.0" style="-fx-cursor: hand;" text="Stock" />
                </children>
             </Pane>
 
    
-            <Pane prefHeight="100.0" prefWidth="119.0">
+            <Pane prefHeight="100.0" prefWidth="147.0">
                <children>
-                  <Button fx:id="btnEditar" layoutX="17.0" layoutY="38.0" mnemonicParsing="false"
-                          prefHeight="25.0" prefWidth="82.0" text="Editar"
-                          style="-fx-background-color: gray; -fx-background-radius: 30 30 30 30; -fx-cursor: hand;" 
-                          textFill="WHITE">
+                  <Button fx:id="btnEditar" layoutX="42.0" layoutY="38.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: gray; -fx-background-radius: 30 30 30 30; -fx-cursor: hand;" text="Editar" textFill="WHITE">
                      <font>
                         <Font name="Bodoni MT" size="12.0" />
                      </font>
@@ -73,8 +62,8 @@
          </children>
       </HBox>
 
-      <Separator layoutX="4.0" layoutY="9.0" prefHeight="17.0" prefWidth="633.0" />
-      <Separator layoutX="7.0" layoutY="157.0" prefHeight="17.0" prefWidth="633.0" />
+      <Separator layoutX="4.0" layoutY="9.0" prefHeight="17.0" prefWidth="758.0" />
+      <Separator layoutX="7.0" layoutY="157.0" prefHeight="17.0" prefWidth="758.0" />
 
    </children>
 </AnchorPane>

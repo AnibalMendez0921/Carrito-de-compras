@@ -5,11 +5,13 @@
 package Controlador;
 
 import Modelo.Carrito;
+import Modelo.ColaPedidos;
 import Modelo.Compra;
 import Modelo.NodoProducto;
 import Modelo.PilaCompras;
 import Modelo.Producto;
 import Modelo.Sesion;
+import Modelo.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -136,81 +138,93 @@ public class CarritoController implements Initializable {
         }
     }
 
-    @FXML
-    public void onComprar() {
-        Dialog<Pair<String, String>> dialog = new Dialog<>();
-        dialog.setTitle("Finalizar Compra");
-        dialog.setHeaderText("Ingrese los datos para su pedido");
+   @FXML
+public void onComprar() {
+    Dialog<Pair<String, String>> dialog = new Dialog<>();
+    dialog.setTitle("Finalizar Compra");
+    dialog.setHeaderText("Ingrese los datos para su pedido");
 
-        ButtonType comprarBtn = new ButtonType("Comprar", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(comprarBtn, ButtonType.CANCEL);
+    ButtonType comprarBtn = new ButtonType("Comprar", ButtonBar.ButtonData.OK_DONE);
+    dialog.getDialogPane().getButtonTypes().addAll(comprarBtn, ButtonType.CANCEL);
 
-        TextField direccionField = new TextField();
-        direccionField.setPromptText("Dirección de entrega");
+    TextField direccionField = new TextField();
+    direccionField.setPromptText("Dirección de entrega");
 
-        ComboBox<String> metodoPagoBox = new ComboBox<>();
-        metodoPagoBox.getItems().addAll("Nequi", "Daviplata", "PSE", "Tarjeta débito o crédito", "transferencia bancaria", "Pago contraentrega" );
-        metodoPagoBox.setPromptText("Método de pago");
+    ComboBox<String> metodoPagoBox = new ComboBox<>();
+    metodoPagoBox.getItems().addAll("Nequi", "Daviplata", "PSE", "Tarjeta débito o crédito", "transferencia bancaria", "Pago contraentrega");
+    metodoPagoBox.setPromptText("Método de pago");
 
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.add(new Label("Dirección:"), 0, 0);
-        grid.add(direccionField, 1, 0);
-        grid.add(new Label("Método de pago:"), 0, 1);
-        grid.add(metodoPagoBox, 1, 1);
+    GridPane grid = new GridPane();
+    grid.setHgap(10);
+    grid.setVgap(10);
+    grid.add(new Label("Dirección:"), 0, 0);
+    grid.add(direccionField, 1, 0);
+    grid.add(new Label("Método de pago:"), 0, 1);
+    grid.add(metodoPagoBox, 1, 1);
 
-        GridPane.setHgrow(direccionField, Priority.ALWAYS);
-        GridPane.setHgrow(metodoPagoBox, Priority.ALWAYS);
+    GridPane.setHgrow(direccionField, Priority.ALWAYS);
+    GridPane.setHgrow(metodoPagoBox, Priority.ALWAYS);
 
-        dialog.getDialogPane().setContent(grid);
-        dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == comprarBtn) {
-                return new Pair<>(direccionField.getText(), metodoPagoBox.getValue());
-            }
-            return null;
-        });
+    dialog.getDialogPane().setContent(grid);
+    dialog.setResultConverter(dialogButton -> {
+        if (dialogButton == comprarBtn) {
+            return new Pair<>(direccionField.getText(), metodoPagoBox.getValue());
+        }
+        return null;
+    });
 
-        dialog.showAndWait().ifPresent(datos -> {
-            String direccion = datos.getKey();
-            String metodoPago = datos.getValue();
+    dialog.showAndWait().ifPresent(datos -> {
+        String direccion = datos.getKey();
+        String metodoPago = datos.getValue();
 
-            if (direccion == null || direccion.isEmpty() || metodoPago == null) {
-                mostrarAlerta("Error", "Debe ingresar la dirección y el método de pago.");
-                return;
-            }
+        if (direccion == null || direccion.isEmpty() || metodoPago == null) {
+            mostrarAlerta("Error", "Debe ingresar la dirección y el método de pago.");
+            return;
+        }
 
-            List<Producto> productosComprados = new ArrayList<>();
-            for (Node nodo : listaItemsVBox.getChildren()) {
-                ItemCarritoController controller = (ItemCarritoController) nodo.getProperties().get("controller");
-                if (controller != null) {
-                    Producto p = controller.getProducto();
-                    int cantidad = controller.getCantidad();
-                    for (int i = 0; i < cantidad; i++) {
-                        productosComprados.add(p);
-                    }
+        List<Producto> productosComprados = new ArrayList<>();
+        for (Node nodo : listaItemsVBox.getChildren()) {
+            ItemCarritoController controller = (ItemCarritoController) nodo.getProperties().get("controller");
+            if (controller != null) {
+                Producto p = controller.getProducto();
+                int cantidad = controller.getCantidad();
+                for (int i = 0; i < cantidad; i++) {
+                    productosComprados.add(p);
                 }
             }
+        }
 
-            if (productosComprados.isEmpty()) {
-                mostrarAlerta("Carrito vacío", "No hay productos para comprar.");
-                return;
-            }
-           
-            Compra nuevaCompra = new Compra(productosComprados, LocalDate.now());
-            nuevaCompra.setDireccion(direccion);
-            nuevaCompra.setMetodoPago(metodoPago);
-            nuevaCompra.setDetalle(detalleCompraArea.getText());
-            nuevaCompra.setTotal(totalCompraActual); 
+        if (productosComprados.isEmpty()) {
+            mostrarAlerta("Carrito vacío", "No hay productos para comprar.");
+            return;
+        }
 
-            pila.push(nuevaCompra);
+        // Obtener el usuario actual de la sesión
+        Usuario cliente = Sesion.getUsuarioActual();
+        if (cliente == null) {
+            mostrarAlerta("Error", "No hay un usuario en sesión.");
+            return;
+        }
 
-            Carrito.limpiar();
-            listaItemsVBox.getChildren().clear();
-            actualizarResumen();
-        });
-    }
+        // Crear la compra
+        Compra nuevaCompra = new Compra(productosComprados, LocalDate.now());
+        nuevaCompra.setNombreCliente(cliente.getNombre()); // Asignar nombre del cliente
+        nuevaCompra.setDireccion(direccion);
+        nuevaCompra.setMetodoPago(metodoPago);
+        nuevaCompra.setDetalle(detalleCompraArea.getText());
+        nuevaCompra.setEstado("Pendiente");
+        nuevaCompra.setTotal(totalCompraActual);
 
+        // Registrar la compra
+        PilaCompras.getInstance().push(nuevaCompra);
+        ColaPedidos.getInstancia().encolar(nuevaCompra); // Encolar para pedidos pendientes
+
+        // Limpiar vista del carrito
+        Carrito.limpiar();
+        listaItemsVBox.getChildren().clear();
+        actualizarResumen();
+    });
+}
     @FXML
     private void Historial(ActionEvent event) {
         try {
