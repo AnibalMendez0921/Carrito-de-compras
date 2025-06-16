@@ -5,10 +5,12 @@
 package Controlador;
 
 import Modelo.Carrito;
+import Modelo.ColaPedidos;
 import Modelo.Compra;
 import Modelo.ListaDeseos;
 import Modelo.PilaCompras;
 import Modelo.Producto;
+import Modelo.Sesion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +34,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.scene.Node;
 
 public class DescripcionProducto1Controller implements Initializable {
 
@@ -44,7 +47,8 @@ public class DescripcionProducto1Controller implements Initializable {
     @FXML private TitledPane titledDescripcion;
     @FXML private TitledPane titledDetalles;
     @FXML private TitledPane titledCuidados;
-
+    @FXML private TextArea textAreaResumen;
+    @FXML private TextArea pedidosTextArea;
     @FXML private ImageView imgCorazon;
 
     private boolean esFavorito = false;
@@ -145,10 +149,9 @@ public class DescripcionProducto1Controller implements Initializable {
         }
     }
 
-    @FXML
-    private void comprarAhora(ActionEvent event) {
-        aplicarTallaAlProductoActual();
-        aplicarTallaAlProductoActual();
+@FXML
+private void comprarAhora(ActionEvent event) {
+    aplicarTallaAlProductoActual();
     productoActual.setCantidad(1);
 
     if (productoActual.getTalla().equals("Sin talla")) {
@@ -156,91 +159,127 @@ public class DescripcionProducto1Controller implements Initializable {
         return;
     }
 
-        if (productoActual.getTalla().equals("Sin talla")) {
-            mostrarAlerta("Error", "Seleccione una talla antes de comprar.");
+    Dialog<Pair<String, String>> dialog = new Dialog<>();
+    dialog.setTitle("Finalizar Compra");
+    dialog.setHeaderText("Ingrese los datos de envío y pago");
+
+    ButtonType comprarBtn = new ButtonType("Comprar", ButtonBar.ButtonData.OK_DONE);
+    dialog.getDialogPane().getButtonTypes().addAll(comprarBtn, ButtonType.CANCEL);
+
+    TextField direccionField = new TextField();
+    direccionField.setPromptText("Dirección");
+
+    ComboBox<String> metodoPagoBox = new ComboBox<>();
+    metodoPagoBox.getItems().addAll("Nequi", "Daviplata", "PSE", "Tarjeta débito o crédito", "transferencia bancaria", "Pago contraentrega");
+    metodoPagoBox.setPromptText("Método de pago");
+
+    GridPane grid = new GridPane();
+    grid.setHgap(10);
+    grid.setVgap(10);
+    grid.add(new Label("Dirección:"), 0, 0);
+    grid.add(direccionField, 1, 0);
+    grid.add(new Label("Método de pago:"), 0, 1);
+    grid.add(metodoPagoBox, 1, 1);
+
+    dialog.getDialogPane().setContent(grid);
+
+    dialog.setResultConverter(dialogButton -> {
+        if (dialogButton == comprarBtn) {
+            return new Pair<>(direccionField.getText(), metodoPagoBox.getValue());
+        }
+        return null;
+    });
+
+    Optional<Pair<String, String>> result = dialog.showAndWait();
+
+    result.ifPresent(datos -> {
+        String direccion = datos.getKey();
+        String metodoPago = datos.getValue();
+
+        if (direccion == null || direccion.isEmpty() || metodoPago == null) {
+            mostrarAlerta("Error", "Debe ingresar dirección y método de pago.");
             return;
         }
 
-        Dialog<Pair<String, String>> dialog = new Dialog<>();
-        dialog.setTitle("Finalizar Compra");
-        dialog.setHeaderText("Ingrese los datos de envío y pago");
+        List<Producto> productos = new ArrayList<>();
+        productos.add(productoActual);
 
-        ButtonType comprarBtn = new ButtonType("Comprar", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(comprarBtn, ButtonType.CANCEL);
+        Compra compra = new Compra(productos, LocalDate.now());
+        compra.setDireccion(direccion);
+        compra.setMetodoPago(metodoPago);
 
-        TextField direccionField = new TextField();
-        direccionField.setPromptText("Dirección");
+        if (Sesion.haySesionActiva()) {
+            compra.setNombreCliente(Sesion.getUsuarioActual().getNombre());
+        } else {
+            compra.setNombreCliente("Invitado");
+        }
 
-        ComboBox<String> metodoPagoBox = new ComboBox<>();
-        metodoPagoBox.getItems().addAll("Nequi", "Daviplata", "PSE", "Tarjeta débito o crédito", "transferencia bancaria", "Pago contraentrega" );
-        metodoPagoBox.setPromptText("Método de pago");
+        double subtotal = productoActual.getPrecio() * productoActual.getCantidad();
+        double total = subtotal + 20000;
+        compra.setTotal(total); 
+        compra.setEstado("Pendiente");
 
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.add(new Label("Dirección:"), 0, 0);
-        grid.add(direccionField, 1, 0);
-        grid.add(new Label("Método de pago:"), 0, 1);
-        grid.add(metodoPagoBox, 1, 1);
+        StringBuilder detalle = new StringBuilder();
+        detalle.append(String.format("%-25s %-6s %-6s %-12s %-12s\n", "Producto", "Talla", "Cant.", "Unitario", "Subtotal"));
+        detalle.append("-------------------------------------------------------------------------\n");
+        detalle.append(String.format("%-25s %-6s %-6d $%-11.2f $%-11.2f\n",
+                productoActual.getNombre(),
+                productoActual.getTalla(),
+                productoActual.getCantidad(),
+                productoActual.getPrecio(),
+                subtotal));
+        detalle.append("-------------------------------------------------------------------------\n");
+        detalle.append(String.format("Subtotal: $%,.2f\n", subtotal));
+        detalle.append("Envío: $20,000.00\n");
+        detalle.append(String.format("Total: $%,.2f\n", total));
 
-        dialog.getDialogPane().setContent(grid);
+        compra.setDetalle(detalle.toString());
 
-        dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == comprarBtn) {
-                return new Pair<>(direccionField.getText(), metodoPagoBox.getValue());
-            }
-            return null;
-        });
+        ColaPedidos.getInstancia().encolar(compra);
+        PilaCompras.getInstance().push(compra);
 
-        Optional<Pair<String, String>> result = dialog.showAndWait();
+        mostrarAlerta("Compra Exitosa", "¡Gracias por su compra!");
+    });
+}
 
-        result.ifPresent(datos -> {
-            String direccion = datos.getKey();
-            String metodoPago = datos.getValue();
+private void mostrarAlerta(String titulo, String mensaje) {
+    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+    alerta.setTitle(titulo);
+    alerta.setHeaderText(null);
+    alerta.setContentText(mensaje);
+    alerta.showAndWait();
+}
 
-            if (direccion == null || direccion.isEmpty() || metodoPago == null) {
-                mostrarAlerta("Error", "Debe ingresar dirección y método de pago.");
-                return;
-            }
 
-            List<Producto> productos = new ArrayList<>();
-            productos.add(productoActual);
+    @FXML
+private void irAVistaUsuario(ActionEvent event) {
+    try {
+        String correo = Sesion.getUsuarioActual().getCorreo();
 
-            Compra compra = new Compra(productos, LocalDate.now());
-            compra.setDireccion(direccion);
-            compra.setMetodoPago(metodoPago);
+        String vistaDestino;
+        String tituloVentana;
 
-            double subtotal = productoActual.getPrecio() * productoActual.getCantidad();
-            double total = subtotal + 20000;
-            DecimalFormat df = new DecimalFormat("#,###.##");
+        if (correo != null && correo.endsWith("@zcarpe")) {
+            vistaDestino = "/Vista/OpcionesAdministrador.fxml";
+            tituloVentana = "Panel Administrador";
+        } else {
+            vistaDestino = "/Vista/OpcionesUsuarios.fxml";
+            tituloVentana = "Panel Usuario";
+        }
 
-            StringBuilder detalle = new StringBuilder();
-            detalle.append(String.format("%-25s %-6s %-6s %-12s %-12s\n", "Producto", "Talla", "Cant.", "Unitario", "Subtotal"));
-            detalle.append("-------------------------------------------------------------------------\n");
-            detalle.append(String.format("%-25s %-6s %-6d $%-11.2f $%-11.2f\n",
-                    productoActual.getNombre(),
-                    productoActual.getTalla(),
-                    productoActual.getCantidad(),
-                    productoActual.getPrecio(),
-                    subtotal));
-            detalle.append("-------------------------------------------------------------------------\n");
-            detalle.append(String.format("Subtotal: $%,.2f\n", subtotal));
-            detalle.append("Envío: $20,000.00\n");
-            detalle.append(String.format("Total: $%,.2f\n", total));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(vistaDestino));
+        Parent root = loader.load();
 
-            compra.setDetalle(detalle.toString());
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle(tituloVentana);
+        stage.show();
 
-            PilaCompras.getInstance().push(compra);
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
 
-            mostrarAlerta("Compra Exitosa", "¡Gracias por su compra!");
-        });
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
 
-    private void mostrarAlerta(String titulo, String mensaje) {
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setTitle(titulo);
-        alerta.setHeaderText(null);
-        alerta.setContentText(mensaje);
-        alerta.showAndWait();
-    }
 }

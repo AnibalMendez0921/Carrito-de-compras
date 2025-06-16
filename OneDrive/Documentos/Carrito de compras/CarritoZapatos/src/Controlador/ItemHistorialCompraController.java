@@ -5,12 +5,9 @@
 package Controlador;
 
 import Modelo.Compra;
-import Modelo.Producto;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-
-import java.util.Random;
 
 public class ItemHistorialCompraController {
 
@@ -29,9 +26,11 @@ public class ItemHistorialCompraController {
 
     public void setCompra(Compra compra) {
         labelFechaCompra.setText(compra.getFecha().toString());
-        labelNumeroPedido.setText(generarNumeroPedido());
-        labelFechaEntrega.setText(compra.getFecha().plusDays(3).toString());
 
+
+        labelNumeroPedido.setText(compra.getIdPedido());
+
+        labelFechaEntrega.setText(compra.getFecha().plusDays(3).toString());
         textAreaDetalle.setText(compra.getDetalle());
         labelDireccion.setText(compra.getDireccion());
         labelMetodoPago.setText(compra.getMetodoPago());
@@ -52,18 +51,12 @@ public class ItemHistorialCompraController {
         labelTotal.setText(String.format("$%,.2f", total));
     }
 
-    private String generarNumeroPedido() {
-        Random random = new Random();
-        int numero = 100 + random.nextInt(900); 
-        return "PED-" + numero;
-    }
-
     private String generarCodigoGuia() {
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        Random random = new Random();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 6; i++) {
-            sb.append(caracteres.charAt(random.nextInt(caracteres.length())));
+            int index = (int) (Math.random() * caracteres.length());
+            sb.append(caracteres.charAt(index));
         }
         return sb.toString();
     }

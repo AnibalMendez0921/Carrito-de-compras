@@ -36,7 +36,7 @@
                 <Image url="@../Imagenes/icono bolsa.png" />
             </image>
         </ImageView>
-        <Region prefHeight="53.0" prefWidth="329.0" HBox.hgrow="ALWAYS" />
+        <Region prefHeight="53.0" prefWidth="135.0" HBox.hgrow="ALWAYS" />
       <Button mnemonicParsing="false" onAction="#Historial" prefHeight="25.0" prefWidth="148.0" style="-fx-background-color: black;" text="Button">
          <graphic>
               <Label prefHeight="16.0" prefWidth="140.0" text="Historial de compras" textFill="white">
@@ -46,15 +46,16 @@
               </Label>
          </graphic>
       </Button>
-      <Button mnemonicParsing="false" style="-fx-background-color: black;" text="Button">
-         <graphic>
-            <Label prefHeight="16.0" prefWidth="81.0" text="Tu usuario 👤" textFill="white">
-               <font>
-                  <Font name="Arial Narrow" size="14.0" />
-               </font>
-            </Label>
-         </graphic>
-      </Button>
+      <Button mnemonicParsing="false" onAction="#irAVistaUsuario" style="-fx-background-color: black;">
+    <graphic>
+        <Label prefHeight="16.0" prefWidth="81.0" text="Tu usuario 👤" textFill="white">
+            <font>
+                <Font name="Arial Narrow" size="14.0" />
+            </font>
+        </Label>
+    </graphic>
+</Button>
+
     </HBox>
 
     <ScrollPane fitToWidth="true" layoutX="45.0" layoutY="104.0" prefHeight="668.0" prefWidth="816.0">

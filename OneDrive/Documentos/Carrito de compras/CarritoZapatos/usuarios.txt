@@ -1,2 +1,4 @@
 
 juan,90348,302843,juan@gmail.com,1234
+juanito,8932,329940,juan,1234
+anibal,3892,032984,anibal@zcarpe,1234

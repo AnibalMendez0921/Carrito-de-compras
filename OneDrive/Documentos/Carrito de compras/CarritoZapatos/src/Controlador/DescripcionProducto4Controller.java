@@ -5,10 +5,12 @@
 package Controlador;
 
 import Modelo.Carrito;
+import Modelo.ColaPedidos;
 import Modelo.Compra;
 import Modelo.ListaDeseos;
 import Modelo.PilaCompras;
 import Modelo.Producto;
+import Modelo.Sesion;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -19,6 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -199,6 +202,12 @@ public class DescripcionProducto4Controller implements Initializable {
             Compra compra = new Compra(productos, LocalDate.now());
             compra.setDireccion(direccion);
             compra.setMetodoPago(metodoPago);
+            
+                  if (Sesion.haySesionActiva()) {
+            compra.setNombreCliente(Sesion.getUsuarioActual().getNombre());
+        } else {
+            compra.setNombreCliente("Invitado");
+        }
 
             double subtotal = productoActual.getPrecio() * productoActual.getCantidad();
             double total = subtotal + 20000;
@@ -221,6 +230,7 @@ public class DescripcionProducto4Controller implements Initializable {
             compra.setDetalle(detalle.toString());
             compra.setTotal(total);
 
+            ColaPedidos.getInstancia().encolar(compra);
             PilaCompras.getInstance().push(compra);
 
             mostrarAlerta("Compra Exitosa", "¡Gracias por su compra!");
@@ -234,4 +244,35 @@ public class DescripcionProducto4Controller implements Initializable {
         alerta.setContentText(mensaje);
         alerta.showAndWait();
     }
+    
+   @FXML
+private void irAVistaUsuario(ActionEvent event) {
+    try {
+        String correo = Sesion.getUsuarioActual().getCorreo(); 
+
+        String vistaDestino;
+        String tituloVentana;
+
+        if (correo != null && correo.endsWith("@zcarpe")) {
+            vistaDestino = "/Vista/OpcionesAdministrador.fxml";
+            tituloVentana = "Panel Administrador";
+        } else {
+            vistaDestino = "/Vista/OpcionesUsuarios.fxml";
+            tituloVentana = "Panel Usuario";
+        }
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(vistaDestino));
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle(tituloVentana);
+        stage.show();
+
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
 }

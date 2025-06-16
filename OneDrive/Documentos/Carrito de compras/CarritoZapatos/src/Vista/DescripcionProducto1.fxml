@@ -29,14 +29,18 @@
          <font><Font name="System Bold" size="12.0" /></font>
       </Button>
 
-      <Button fx:id="btnUsuario" layoutX="1150.0" layoutY="40.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Tu usuario">
-         <graphic>
-            <ImageView fitHeight="20" fitWidth="20">
-               <image><Image url="@../Imagenes/usuario.png" /></image>
-            </ImageView>
-         </graphic>
-         <font><Font name="System Bold" size="12.0" /></font>
-      </Button>
+      <Button fx:id="btnUsuario" layoutX="1150.0" layoutY="40.0" mnemonicParsing="false"
+        style="-fx-background-color: transparent; -fx-cursor: hand;" text="Tu usuario"
+        onAction="#irAVistaUsuario">
+   <graphic>
+      <ImageView fitHeight="20" fitWidth="20">
+         <image><Image url="@../Imagenes/usuario.png" /></image>
+      </ImageView>
+   </graphic>
+   <font>
+      <Font name="System Bold" size="12.0" />
+   </font>
+</Button>
 
       <Pane layoutX="-16.0" layoutY="106.0" prefHeight="142.0" prefWidth="1316.0" style="-fx-background-color: white;">
          <children>

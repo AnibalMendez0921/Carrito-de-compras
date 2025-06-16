@@ -9,6 +9,7 @@ import Modelo.Compra;
 import Modelo.NodoProducto;
 import Modelo.PilaCompras;
 import Modelo.Producto;
+import Modelo.Sesion;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -195,7 +196,7 @@ public class CarritoController implements Initializable {
                 mostrarAlerta("Carrito vacío", "No hay productos para comprar.");
                 return;
             }
-
+           
             Compra nuevaCompra = new Compra(productosComprados, LocalDate.now());
             nuevaCompra.setDireccion(direccion);
             nuevaCompra.setMetodoPago(metodoPago);
@@ -236,4 +237,35 @@ public class CarritoController implements Initializable {
         alerta.setContentText(mensaje);
         alerta.showAndWait();
     }
+    
+    @FXML
+private void irAVistaUsuario(ActionEvent event) {
+    try {
+        String correo = Sesion.getUsuarioActual().getCorreo();
+
+        String vistaDestino;
+        String tituloVentana;
+
+        if (correo != null && correo.endsWith("@zcarpe")) {
+            vistaDestino = "/Vista/OpcionesAdministrador.fxml";
+            tituloVentana = "Panel Administrador";
+        } else {
+            vistaDestino = "/Vista/OpcionesUsuarios.fxml";
+            tituloVentana = "Panel Usuario";
+        }
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(vistaDestino));
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle(tituloVentana);
+        stage.show();
+
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
 }

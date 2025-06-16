@@ -162,5 +162,13 @@
             </Button>
          </children>
       </Pane>
+      
+      <Button fx:id="btnRegresar" layoutX="1208.0" layoutY="820.0" mnemonicParsing="false" onAction="#irAPantallaPrincipal" style="-fx-background-color: transparent; -fx-cursor: hand;">
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="43.0">
+               <image><Image url="@../Imagenes/flecha.png" /></image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>
